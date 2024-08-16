@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CamDialog</class>
+ <widget class="QDialog" name="CamDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>652</width>
+    <height>321</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="rbWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="rbLabel">
+        <property name="text">
+         <string>Rayon de Base</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="rbEdit">
+        <property name="text">
+         <string>19</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="rbUnitLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widthWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="widthLabel">
+        <property name="text">
+         <string>Largeur</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="widthEdit">
+        <property name="text">
+         <string>8</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="widthUnitLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="inertiaWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="inertiaLabel">
+        <property name="text">
+         <string>Inertie</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="inertiaEdit">
+        <property name="text">
+         <string>1000</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="inertiaUnitLabel">
+        <property name="text">
+         <string>g.mm²</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="youngWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="youngLabel">
+        <property name="text">
+         <string>Module de Young</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="youngEdit">
+        <property name="text">
+         <string>200</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="youngUnitLabel">
+        <property name="text">
+         <string>GPa</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="poissonWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="poissonLabel">
+        <property name="text">
+         <string>Coefficient de Poisson</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="poissonEdit">
+        <property name="text">
+         <string>0.3</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="poissonUnitLabel">
+        <property name="text">
+         <string>Sans Unité</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="profileWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item alignment="Qt::AlignRight">
+       <widget class="QLabel" name="profileLabel">
+        <property name="text">
+         <string>Profil</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QToolButton" name="browseProfileButton">
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
+        <property name="text">
+         <string>No File</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources/resources.qrc">
+          <normaloff>:/icons/icons/folder-icon.svg</normaloff>:/icons/icons/folder-icon.svg</iconset>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::InstantPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+        <property name="autoRaise">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="profileUnitLabel">
+        <property name="text">
+         <string>.txt</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>CamDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>CamDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>browseProfileButton</sender>
+   <signal>clicked()</signal>
+   <receiver>browseProfileButton</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>258</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>325</x>
+     <y>258</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

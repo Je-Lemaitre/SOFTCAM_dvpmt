@@ -1,0 +1,12 @@
+[project]
+name = "SOFTCAM"
+version = "1"
+description = "This software aims to help engineers in cam design"
+authors = ["Jérémy LEMAITRE <jeremy.lemaitre@ensta-bretagne.org>"]
+
+[project.dependencies]
+dependency1 = "^1.0"
+dependency2 = "^2.0"
+
+[project.extras]
+extra_feature = ["dependency3", "dependency4"]

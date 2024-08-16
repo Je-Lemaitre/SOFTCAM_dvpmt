@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/oreca-logo_star.png</file>
+    <file>icons/oreca-logo.png</file>
+    <file>icons/folder-icon.svg</file>
+    <file>icons/home-icon.svg</file>
+    <file>icons/info-icon.svg</file>
+    <file>icons/plus-icon.svg</file>
+    <file>icons/save-icon.svg</file>
+    <file>icons/table-icon.svg</file>
+  </qresource>
+  <qresource prefix="illustrations">
+    <file>img/kinematic_diagram.svg</file>
+  </qresource>
+</RCC>

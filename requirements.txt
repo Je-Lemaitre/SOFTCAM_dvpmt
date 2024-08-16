@@ -1,0 +1,11 @@
+geomdl
+matplotlib
+numpy
+openpyxl
+pandas
+pyqtgraph
+PySide6
+PySide6
+PySide6_Addons
+PySide6_Essentials
+scipy
