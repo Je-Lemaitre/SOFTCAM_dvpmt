@@ -6,18 +6,24 @@ import scipy.special as scs
 from domain.entities.assemblage import Assemblage, AssemblageLinguet
 
 class CalculRampe():
-    """Une classe qui implémente le calcul des rampes.
+    """CalculRampe modélise les lois de distribution pour les phases de rampe afin de pouvoir calculer la levée, la vitesse, l'accélération et le jerk.
+
+    Cette classe fournit des méthodes permettant le calcul de la levée et de ses dérivées au cours de la phase de rampe.
+
+    Args:
+        duree_rampe (float): Durée angulaire totale de la phase de rampe.
+        duree_vitesse_constante (float): Durée angulaire de la sous-phase à vitesse constante dans la phase de rampe.
+        levee_rampe (float): Levée caractéristique de la rampe.
+        vitesse_rampe (float): Vitesse caractéristique de la rampe.
+
+    Attributes:
+
+    Methods:
+    
+    Raises:
+        ValueError: Si certaines durées sont négatives ou nulles ou si la duree de rampe est inférieure à la durée à vitesse constante.
     """
-
-    def __init__(self, duree_rampe, duree_vitesse_constante, levee_rampe, vitesse_rampe):
-        """Initialisation de la classe et construction des attributs.
-
-        Args:
-            duree_rampe (float): Durée angulaire de la phase de rampe.
-            duree_vitesse_constante (float): Durée angulaire de la sous-phase à vitesse constante dans la phase de rampe.
-            levee_rampe (float): Levée caractéristique de la rampe, i.e. levée en fin de rampe pour la rampe d'ouverture et levée en début de rampe pour la rampe de fermeture.
-            vitesse_rampe (float): Vitesse caractéristique de la rampe, i.e vitesse du palier à vitesse constante.
-        """
+    def __init__(self, duree_rampe: float, duree_vitesse_constante: float, levee_rampe: float, vitesse_rampe: float):
         if duree_rampe<=0 :
             raise ValueError("La rampe a une durée nulle ou négative.")
         if duree_vitesse_constante<=0:
@@ -80,7 +86,7 @@ class CalculRampe():
             raise ValueError("La matrice du problème est difficilement inversible. Il se peut que les solutions du problème n'existent pas ou soient imprécises")
         return npl.inv(self.matrix_pb())@self.bcs_pb()
 
-    def j(self, ac):
+    def j(self, ac: float) -> float:
         """Calcul du Jerk spécifiquement pour la phase de rampe d'ouverture.
 
         Args:
@@ -98,7 +104,7 @@ class CalculRampe():
 
         return jerk.reshape(np.shape(ac))
 
-    def a(self, ac):
+    def a(self, ac: float) -> float:
         """Calcul l'accélération spécifiquement pour la phase de rampe d'ouverture.
 
         Args:
@@ -116,7 +122,7 @@ class CalculRampe():
 
         return accel.reshape(np.shape(ac))
             
-    def v(self, ac):
+    def v(self, ac: float) -> float:
         def v_ar(x):
             xm = np.atleast_1d(np.ma.array(np.array(x), mask = ((x < 0) | (x >= self.dac_r - self.dac_vc))))
             vitesse = 7*self.a7*xm**6 + 6*self.a6*xm**5 + 5*self.a5*xm**4 + 4*self.a4*xm**3
@@ -135,7 +141,7 @@ class CalculRampe():
 
         return vitesse.reshape(np.shape(ac))
 
-    def l(self, ac):
+    def l(self, ac: float) -> float:
         def l_ar(x):
             xm = np.atleast_1d(np.ma.array(np.array(x), mask = ((x < 0) | (x >= self.dac_r - self.dac_vc))))
             levee = self.a7*xm**7 + self.a6*xm**6 + self.a5*xm**5 + self.a4*xm**4
@@ -154,13 +160,13 @@ class CalculRampe():
 
         return levee.reshape(np.shape(ac))
     
-    def compute_levee_accel(self):
+    def compute_levee_accel(self) -> float:
         levee_accel = self.lr - self.dac_vc*self.vr
         if levee_accel < 0 :
             raise ValueError("La levée renseigné pour la rampe conduit à une levée négative. Afin de contrer ce problème vous pouvez au choix : \n \ac Augmenter la levée de rampe \n \ac Diminuer la vitesse de rampe \n \ac Diminuer la durée de la phase à vitesse constante.")
         return levee_accel
     
-    def matrix_pb(self):
+    def matrix_pb(self) -> np.ndarray:
         return np.array([
             [self.dac_apos**3, self.dac_apos**2, self.dac_apos, 1],
             [7*self.dac_apos**3, 6*self.dac_apos**2, 5*self.dac_apos, 4],
@@ -168,7 +174,7 @@ class CalculRampe():
             [210*self.dac_apos**3, 120*self.dac_apos**2, 60*self.dac_apos, 24]
         ])
     
-    def bcs_pb(self):
+    def bcs_pb(self) -> np.ndarray:
         return np.array([
             self.la/self.dac_apos**4, 
             self.vr/self.dac_apos**3,
@@ -177,10 +183,10 @@ class CalculRampe():
         ])
     
     @classmethod
-    def from_dict(cls, d):
+    def from_dict(cls, d: dict):
         return cls(**d)
     
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             "duree_rampe" : self.dac_r,
             "duree_vitesse_constante" : self.dac_vc,
@@ -237,9 +243,8 @@ class CalculRaccord():
     def dac_raccord(self, new_dac):
         if new_dac <= 0:
             raise ValueError("Le raccord a une durée négative ou nulle ce qui n'est pas permis.")
-        else :
-            self.__dac_raccord = new_dac
-            self.a_spl = self.compute_accel_spl()
+        self.__dac_raccord = new_dac
+        self.a_spl = self.compute_accel_spl()
     @ai.setter
     def ai(self, new_ai):
         self.__ai = new_ai
@@ -342,8 +347,7 @@ class CalculRaccord():
 
         t = np.linspace(0.0, 1.0, nTimes)
 
-        polynomial_array = np.array([self.bernstein_poly(i, nPoints-1, t) for i in range(0, nPoints) ])
-
+        polynomial_array = np.array([self.bernstein_poly(i, nPoints-1, t) for i in range(nPoints) ])
         xvals = np.dot(xPoints, polynomial_array)
         yvals = np.dot(yPoints, polynomial_array)
 

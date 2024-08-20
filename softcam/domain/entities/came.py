@@ -36,10 +36,7 @@ class Came:
 
     @classmethod
     def from_dict(cls, d):
-        if d["profil"] is None :
-            profil_import = None
-        else :
-            profil_import = scitp.BSpline(d["profil"])
+        profil_import = None if d["profil"] is None else scitp.BSpline(d["profil"])
         return cls(
             rayon_base = d["rayon_base"],
             largeur = d["largeur"],
@@ -50,10 +47,7 @@ class Came:
         )
     
     def to_dict(self):
-        if self.profil is None :
-            profil_export = None
-        else :
-            profil_export = self.profil.__dict__
+        profil_export = None if self.profil is None else self.profil.__dict__
         return {
             "rayon_base" : self.rayon_base,
             "largeur" : self.largeur,

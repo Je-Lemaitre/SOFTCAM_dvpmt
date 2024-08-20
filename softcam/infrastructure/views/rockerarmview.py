@@ -49,18 +49,18 @@ class LinguetDialog(QDialog, Ui_LinguetDialog):
 class PatinDialog(QDialog, Ui_PatinDialog):
     def __init__(self, controller : Controller, loc = "soupape"):
         super(PatinDialog, self).__init__()
-        
+
         self.loc = loc
 
         self.controller = controller
-        if loc == "soupape":
-            self.patin = controller.current_study.assemblage.levier.patin_soupape
-        elif loc == "came":
+        if loc == "came":
             self.patin = controller.current_study.assemblage.levier.patin_came
 
+        elif loc == "soupape":
+            self.patin = controller.current_study.assemblage.levier.patin_soupape
         self.setupUi(self)
-        
-        self.setWindowTitle("Patin coté " + self.loc)
+
+        self.setWindowTitle(f"Patin coté {self.loc}")
         self.rpEdit.setText(str(round(self.patin.rayon_courbure /unit.MILLIMETER_TO_METER, 3)))
         self.widthEdit.setText(str(round(self.patin.largeur /unit.MILLIMETER_TO_METER, 3)))
         self.youngEdit.setText(str(round(self.patin.module_young /unit.GIGAPASCAL_TO_PASCAL, 3)))

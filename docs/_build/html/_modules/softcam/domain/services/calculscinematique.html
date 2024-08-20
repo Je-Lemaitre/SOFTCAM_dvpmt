@@ -1,0 +1,1448 @@
+<!doctype html>
+<html class="no-js" lang="fr" data-content_root="../../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Recherche" href="../../../../search.html" />
+
+    <!-- Generated with Sphinx 8.0.2 and Furo 2024.08.06 -->
+        <title>softcam.domain.services.calculscinematique - Documentation softcam 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../index.html"><div class="brand">Documentation softcam 2.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Documentation softcam 2.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Recherche" name="q" aria-label="Recherche">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../modules.html">softcam</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of softcam</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../softcam.html">softcam package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of softcam package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../softcam.application.html">softcam.application package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of softcam.application package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.application.interfaces.html">softcam.application.interfaces package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.application.usecases.html">softcam.application.usecases package</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../softcam.domain.html">softcam.domain package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of softcam.domain package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.domain.entities.html">softcam.domain.entities package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.domain.services.html">softcam.domain.services package</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../softcam.infrastructure.html">softcam.infrastructure package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of softcam.infrastructure package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.infrastructure.controllers.html">softcam.infrastructure.controllers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.infrastructure.repositories.html">softcam.infrastructure.repositories package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.infrastructure.views.html">softcam.infrastructure.views package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>Code source de softcam.domain.services.calculscinematique</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">npl</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">sco</span>
+
+<span class="kn">from</span> <span class="nn">domain.entities.assemblage</span> <span class="kn">import</span> <span class="n">Assemblage</span><span class="p">,</span> <span class="n">AssemblageLinguet</span><span class="p">,</span> <span class="n">AssemblageDirecte</span>
+<span class="kn">from</span> <span class="nn">domain.entities.loiscame</span> <span class="kn">import</span> <span class="n">LoisCame</span>
+
+<div class="viewcode-block" id="CalculsCinematique">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique">[docs]</a>
+<span class="k">class</span> <span class="nc">CalculsCinematique</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Classe abstraite pour la réalisation des calculs cinématiques relitfs aux systèmes.</span>
+
+<span class="sd">        Cette class initialise les paramètres principaux communs à tous les systèmes de distribution et fournit des &quot;properties&quot; pour accéder à ces paramètres. Des méthodes abstraites à implémenter obligatoirement dans les classes enfants sont également définie. Ces méthodes permet le calcul de grandeurs communes à tous les systèmes de distribution.</span>
+<span class="sd">        </span>
+<span class="sd">        Les variables définies ici correspondent au paramétrage utilisé dans le rapport associé.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            assemblage (Assemblage): L&#39;assemblage étudié, qui stocke les grandeurs caractéristiques de l&#39;assemblage.</span>
+<span class="sd">            loiscame (LoisCame): Les lois de distribution, qui serve de loi entrée-sortie.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            x (np.ndarray): Vecteur unitaire suivant la direction x.</span>
+<span class="sd">            y1 (np.ndarray): Vecteur unitaire suivant la direction y1.</span>
+<span class="sd">            z1 (np.ndarray): Vecteur unitaire suivant la direction z1.</span>
+<span class="sd">            lbd (scipy.BSpline): Loi de levée .</span>
+<span class="sd">            lbd_doac (scipy.BSpline): Loi de vitesse (dérivée première de la levée par rapport à l&#39;angle de la came).</span>
+<span class="sd">            lbd_ddoac (scipy.BSpline): Loi d&#39;accélération.</span>
+<span class="sd">            sensrot (int): Sens de rotation de la came (sens trigonométrique = 1, sens horaire = -1).</span>
+<span class="sd">            rb (float): Rayon de base de la came.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            y2(ac): Méthode abstraite, calcule le vecteur unitaire y2 en fonction de l&#39;angle de roation de la came.</span>
+<span class="sd">            z2(ac): Méthode abstraite, calcule le vecteur unitaire z2 en fonction de l&#39;angle de roation de la came.</span>
+<span class="sd">            vitesse_glissement(ac, contact=None): Méthode abstraite, calcule la vitesse de glissement (en m/rad) en fonction de l&#39;angle de rotation de la came contact considéré.</span>
+<span class="sd">            position_contact(ac, contact=None): Méthode abstraite, détermine la position du point de contact en fonction de l&#39;angle de rotation de la came et du contact considéré.</span>
+<span class="sd">            ci_c(ac): Méthode abstraite, détermine l&#39;expression du vecteur reliant le centre de la came au point de contact avec la pièce en vis-à-vis en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">            matrot(angle): Méthode de classe, définit la matrice de rotation de l&#39;angle renseigné.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">Assemblage</span><span class="p">,</span> <span class="n">loiscame</span> <span class="p">:</span> <span class="n">LoisCame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lbd</span> <span class="o">=</span> <span class="n">loiscame</span><span class="o">.</span><span class="n">l</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lbd_doac</span> <span class="o">=</span> <span class="n">loiscame</span><span class="o">.</span><span class="n">v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lbd_ddoac</span> <span class="o">=</span> <span class="n">loiscame</span><span class="o">.</span><span class="n">a</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sensrot</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">sens_rotation_came</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rb</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">came</span><span class="o">.</span><span class="n">rayon_base</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__x</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">y1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__y1</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">z1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__z1</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lbd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lbd</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lbd_doac</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lbd_doac</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lbd_ddoac</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lbd_ddoac</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sensrot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sensrot</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rb</span>
+
+<div class="viewcode-block" id="CalculsCinematique.y2">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique.y2">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">y2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ac</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CalculsCinematique.z2">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique.z2">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">z2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ac</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CalculsCinematique.vitesse_glissement">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique.vitesse_glissement">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">vitesse_glissement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CalculsCinematique.position_contact">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique.position_contact">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">position_contact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="CalculsCinematique.ci_c">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique.ci_c">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">ci_c</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematique.matrot">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematique.matrot">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">matrot</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">angle</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">cos_beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">sin_beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+        <span class="n">matrices</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos_beta</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos_beta</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin_beta</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin_beta</span>
+
+        <span class="k">return</span> <span class="n">matrices</span></div>
+</div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier">[docs]</a>
+<span class="k">class</span> <span class="nc">CalculsCinematiqueLevier</span><span class="p">(</span><span class="n">CalculsCinematique</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe permettant de réalisé les calculs cinématique spécifiques aux systèmes avec levier (Linguet ou Basculeur).</span>
+
+<span class="sd">    Cette classe hérite de la classe CalculsCinematique et implémente des méthodes spécifique au sytèmes à levier.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        assemblage (AssemblageLinguet): Un assemblage à levier.</span>
+<span class="sd">        loiscame (LoisCame): Les lois de distribution.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        ol (np.ndarray): Coordonnées du centre de rotation du levier.</span>
+<span class="sd">        cl (np.ndarray): Coordonnées du vecteur CL.</span>
+<span class="sd">        l_ling (float): Longueur du levier, norme du vecteur AL.</span>
+<span class="sd">        rps (float): Rayon de courbure du patin côté soupape.</span>
+<span class="sd">        rpc (float): Rayon de courbure du patin côté came.</span>
+<span class="sd">        gamma0 (float): Angle entre le vecteur y1 et le vecteur BC à levée nulle.</span>
+<span class="sd">        cb0 (np.ndarray): Vecteur CB à levée nulle.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        t23(ac): Calcule le vecteur tangent au contact Came/Patin.</span>
+<span class="sd">        n23(ac): Calcule le vecteur normal au contact Came/Patin.</span>
+<span class="sd">        y23(ac): Calcule le vecteur y23 dans le référentiel lié à la soupape.</span>
+<span class="sd">        z23(ac): Calcule le vecteur z23 dans le référentiel lié à la soupape.</span>
+<span class="sd">        y3(ac): Calcule le vecteur y3 dans le référentiel lié à la soupape.</span>
+<span class="sd">        z3(ac): Calcule le vecteur z3 dans le référentiel lié à la soupape.</span>
+<span class="sd">        y2(ac): Calcule le vecteur y2 dans le référentiel lié à la soupape.</span>
+<span class="sd">        z2(ac): Calcule le vecteur z2 dans le référentiel lié à la soupape.</span>
+<span class="sd">        glissement_specifique(ac, contact=None): Calcule les glissements spécifiques au contact renseigné en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        vitesse_glissement(ac, contact=None): Calcule la vitesse de glissement en fonction de l&#39;angle de rotation de la came au contact renseigné.</span>
+<span class="sd">        position_contact(ac, contact=None): Détermine la position du point de contact en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        vg23(ac): Calcule la vitesse de glissement pour le contact Came/Patin .</span>
+<span class="sd">        vg12(ac): Calcule la vitesse de glissement pour le contact Came/Soupape.</span>
+<span class="sd">        v3_ic(ac): Calcule la vitesse du point de contact Came/Patin dans le référentiel lié à la came.</span>
+<span class="sd">        v2_ic(ac): Calcule la vitesse du point de contact Came/Patin dans le référentiel lié au levier.</span>
+<span class="sd">        v2_is(ac): Calcule la vitesse du point de contact Soupape/Patin dans le référentiel lié au levier.</span>
+<span class="sd">        v1_is(ac): Calcule la vitesse du point de contact Soupape/Patin dans le référentiel lié à la soupape.</span>
+<span class="sd">        angle_y23init_n23(ac): Calcule l&#39;angle entre le vecteur B0C et le vecteur normal en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        cos_y23init_n23(ac): Calcule le cosinus de l&#39;angle entre le vecteur B0C et le vecteur normal en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        sgn_y23init_n23(ac): Calcule  le signe de l&#39;angle entre le vecteur B0C et le vecteur normal en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        ci_c(ac): Détermine l&#39;expression du vecteur reliant le centre de la came au point de contact en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        li_c(ac): Détermine l&#39;expression du vecteur reliant le centre de rotation du linguet au point de contact avec la came en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        li_s(ac): Détermine l&#39;expression du vecteur reliant le centre de rotation du linguet au point de contact avec la soupape en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        phi_doac(ac, pas=0.0005): Calcule la dérivée de l&#39;angle phi par rapport à l&#39;angle de rotation de la came et avec un pas donné.</span>
+<span class="sd">        phi(ac): Calcule l&#39;angle phi en fonction de l&#39;angle de  rotation de la came.</span>
+<span class="sd">        eta_doac(ac): Calcule la dérivée de l&#39;angle eta par rapport à l&#39;angle de rotation de la came.</span>
+<span class="sd">        cb_doac(ac): Calcule la dérivée du vecteur CB par rapport à l&#39;angle de rotation de la came et dans le référentiel lié à la soupape.</span>
+<span class="sd">        eta(ac): Calcule l&#39;angle eta.</span>
+<span class="sd">        abs_angle_from_cos(cos_angle): Fonction utilitaire permet de calculer la valeur absolue dans angle à partir de son cosinus.</span>
+<span class="sd">        cos_eta(ac): Calcule le cosinus de l&#39;angle eta en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        sgn_eta(ac): Calcule le signe de l&#39;angle eta en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        cb(ac): Calcule le vecteur CB en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        lb(ac): Calcule le vecteur LB en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">        compute_cb0(): Calcule le vecteur CB0.</span>
+<span class="sd">        di_soup(ac): Calcule la position du point de contact entre la soupape et son pation.</span>
+<span class="sd">        beta_ddoac(ac): Calcule la dérivée seconde de l&#39;angle beta par rapport à l&#39;angle de rotation de la came.</span>
+<span class="sd">        beta_doac(ac): Calcule la dérivée de l&#39;angle beta par rapport à l&#39;angle de rotation de la came.</span>
+<span class="sd">        beta(ac): Calcule l&#39;angle beta en fonction de l&#39;angle de rotation de la came.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">AssemblageLinguet</span><span class="p">,</span> <span class="n">loiscame</span> <span class="p">:</span> <span class="n">LoisCame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> 
+        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">assemblage</span><span class="p">,</span> <span class="n">loiscame</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ol</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">coords_levier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__cl</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">coords_levier</span> <span class="o">-</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">coords_came</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__l_ling</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">longueur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rps</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">patin_soupape</span><span class="o">.</span><span class="n">rayon_courbure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rpc</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">patin_came</span><span class="o">.</span><span class="n">rayon_courbure</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">__gamma0</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">angle_leviercame_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__cb0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_cb0</span><span class="p">()</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ol</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">cl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cl</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">l_ling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__l_ling</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rps</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rpc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rpc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gamma0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gamma0</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">cb0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cb0</span>
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.t23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.t23">[docs]</a>
+    <span class="k">def</span> <span class="nf">t23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule le vecteur unitaire t23, tangent au contact entre la came et le patin en fonction de l&#39;angle de rotation de la came. L&#39;utilisation du produit scalaire repose sur le fait que t23 appartient à la base orthonormale directe (x, t23, n23).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur t23 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="CalculsCinematiqueLevier.n23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.n23">[docs]</a>
+    <span class="k">def</span> <span class="nf">n23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur unitaire n23, normal au contact entre la came et le patin en fonction de l&#39;angle de rotation de la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur n23 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">angle_y3_n23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensrot</span> <span class="o">*</span> <span class="n">ac</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sensrot</span><span class="o">*</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="n">angle_y3_n23</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.y23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.y23">[docs]</a>
+    <span class="k">def</span> <span class="nf">y23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule le vecteur unitaire y23, colinéaire à la droite reliant le centre du patin au centre de la came et allant de B vers C.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur y23 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.z23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.z23">[docs]</a>
+    <span class="k">def</span> <span class="nf">z23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule le vecteur unitaire z23, normal à la droite reliant le centre du patin au centre de la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur z23 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.y3">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.y3">[docs]</a>
+    <span class="k">def</span> <span class="nf">y3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur unitaire y3 lié à la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur y3 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sensrot</span><span class="o">*</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.z3">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.z3">[docs]</a>
+    <span class="k">def</span> <span class="nf">z3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur unitaire z3 lié à la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur z3 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sensrot</span><span class="o">*</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.y2">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.y2">[docs]</a>
+    <span class="k">def</span> <span class="nf">y2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur unitaire y2 lié au linguet. y2 est colinéaire à la droite reliant le centre du patin côté soupape, A, au centre de rotation du linguet, L, et dans le sens A vers L.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur y2 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.z2">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.z2">[docs]</a>
+    <span class="k">def</span> <span class="nf">z2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur unitaire z2 lié au linguet. y2 est normal à la droite reliant A et L.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur z2 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.glissement_specifique">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.glissement_specifique">[docs]</a>
+    <span class="k">def</span> <span class="nf">glissement_specifique</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">contact</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span> <span class="kc">None</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule les glissements spécifiques pour un angle rotation de came donné et un contact donné. Si aucun contact n&#39;est renseigné, le glissement spécifique est calculé pour tous les contacts.</span>
+<span class="sd">    </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): L&#39;angle de rotation de la came pour lequel doit être calculé le glissement spécifique.</span>
+<span class="sd">            contact (str, optional): Le contact pour lequel doit être calculé le glissement spécifique. Ce contact est soit &quot;Came/Patin&quot;, soit &quot;Soupape/Patin&quot;. </span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array : Les glissements spécifiques.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;Came/Patin&quot;</span> <span class="p">:</span>
+            <span class="n">vg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vg23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="n">gs2</span> <span class="o">=</span> <span class="o">-</span><span class="n">vg</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">v2_ic</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="n">gs3</span> <span class="o">=</span> <span class="n">vg</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">v3_ic</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gs2</span><span class="p">,</span> <span class="n">gs3</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;Soupape/Patin&quot;</span><span class="p">:</span>
+            <span class="n">gs1</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lbd</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ol</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbd</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rps</span><span class="p">)</span>
+            <span class="n">gs2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lbd</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ol</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">rps</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gs1</span><span class="p">,</span> <span class="n">gs2</span><span class="p">])</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">glissement_specifique</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="s2">&quot;Came/Patin&quot;</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">glissement_specifique</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="s2">&quot;Soupape/Patin&quot;</span><span class="p">)</span>
+            <span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.vitesse_glissement">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.vitesse_glissement">[docs]</a>
+    <span class="k">def</span> <span class="nf">vitesse_glissement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">contact</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule la vitesse de glissement pour un angle rotation de came donné et un contact donné. Si aucun contact n&#39;est renseigné, le vitesse de glissement est calculée pour tous les contacts.</span>
+<span class="sd">    </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): L&#39;angle de rotation de la came.</span>
+<span class="sd">            contact (str, optional): Le contact parmi &quot;Came/Patin&quot; et &quot;Soupape/Patin&quot;. </span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : La vitesse de glissement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;Came/Patin&quot;</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vg23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;Soupape/Patin&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vg12</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">vitesse_glissement</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="s2">&quot;Came/Patin&quot;</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">vitesse_glissement</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="s2">&quot;Soupape/Patin&quot;</span><span class="p">)</span>
+            <span class="p">])</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.position_contact">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.position_contact">[docs]</a>
+    <span class="k">def</span> <span class="nf">position_contact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">contact</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calule la position du point de contact au contact renseigné. Suivant le type de contact, cylindre/cylindre ou cylindre/plan, la position du point de contact peut être repérée par un angle ou par une distance à un axe (voir rapport et paramétrage des systèmes). </span>
+<span class="sd">    </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): L&#39;angle de rotation de la came.</span>
+<span class="sd">            contact (str, optional): Le contact parmi &quot;Came/Patin&quot; et &quot;Soupape/Patin&quot;. </span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : ¨Position du contact. Angle CBI_c dans le cas du contact &quot;Came/Patin&quot;. Distance SI_s dans le cas du contact &quot;Soupape/Patin&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;Came/Patin&quot;</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_y23init_n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">contact</span> <span class="o">==</span> <span class="s2">&quot;Soupape/Patin&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">di_soup</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">position_contact</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="s2">&quot;Came/Patin&quot;</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">position_contact</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="s2">&quot;Soupape/Patin&quot;</span><span class="p">)</span>
+            <span class="p">])</span></div>
+
+ 
+<div class="viewcode-block" id="CalculsCinematiqueLevier.vg23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.vg23">[docs]</a>
+    <span class="k">def</span> <span class="nf">vg23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la vitesse de glissement du patin par rapport à la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Vitesse de glissement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">beta_doac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span>
+            <span class="s2">&quot;ij, ij -&gt; i&quot;</span><span class="p">,</span>
+            <span class="n">cb</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i, ij -&gt; ij&quot;</span><span class="p">,</span> <span class="n">beta_doac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">(</span><span class="n">ac</span><span class="p">)),</span>
+            <span class="n">n23</span>
+            <span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta_doac</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.vg12">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.vg12">[docs]</a>
+    <span class="k">def</span> <span class="nf">vg12</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la vitesse de glissement de la soupape par rapport au patin.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Vitesse de glissement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rps</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.v3_ic">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.v3_ic">[docs]</a>
+    <span class="k">def</span> <span class="nf">v3_ic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la vitesse du point de contact &quot;Came/Patin&quot; dans la base liée à la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Vitesse du point de contact &quot;Came/Patin&quot; dans la base liée à la came .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">n23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">cb_doac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij , ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb_doac</span><span class="p">,</span> <span class="n">t23</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij , ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">n23</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.v2_ic">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.v2_ic">[docs]</a>
+    <span class="k">def</span> <span class="nf">v2_ic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la vitesse du point de contact &quot;Came/Patin&quot; dans la base liée au linguet.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Vitesse du point de contact &quot;Came/Patin&quot; dans la base liée au linguet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.v2_is">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.v2_is">[docs]</a>
+    <span class="k">def</span> <span class="nf">v2_is</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la vitesse du point de contact &quot;Soupape/Patin&quot; dans la base liée au linget.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Vitesse du point de contact &quot;Soupape/Patin&quot; dans la base liée au linguet .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rps</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.v1_is">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.v1_is">[docs]</a>
+    <span class="k">def</span> <span class="nf">v1_is</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la vitesse du point de contact &quot;Soupape/Patin&quot; dans la base liée à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Vitesse du point de contact &quot;Soupape/Patin&quot; dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.angle_y23init_n23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.angle_y23init_n23">[docs]</a>
+    <span class="k">def</span> <span class="nf">angle_y23init_n23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;angle entre la droite (BC) et la normale au contact Came/Patin à partir du cosinus de l&#39;angle et du signe de l&#39;angle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Angle (y23, n23).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cos_y23init_n23</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cos_y23init_n23</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span>
+        <span class="n">abs_y23init_n23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_angle_from_cos</span><span class="p">(</span><span class="n">cos_y23init_n23</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sgn_y23init_n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span><span class="o">*</span><span class="n">abs_y23init_n23</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.cos_y23init_n23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.cos_y23init_n23">[docs]</a>
+    <span class="k">def</span> <span class="nf">cos_y23init_n23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le cosinus de l&#39;angle entre la droite (BC) et la normale au contact Came/Patin.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Cosinus de l&#39;angle (y23, n23).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y23_init_base2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="nd">@self</span><span class="o">.</span><span class="n">y23</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> 
+        <span class="n">y23_init_update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span><span class="nd">@y23_init_base2</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">y23_init_update</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.sgn_y23init_n23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.sgn_y23init_n23">[docs]</a>
+    <span class="k">def</span> <span class="nf">sgn_y23init_n23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le signe de l&#39;angle entre la droite (BC) et la normale au contact Came/Patin. Cette fonction retourne -1 si le signe est strictement négatif, 1 si le signe est strictement positif et zéro sinon.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int : Signe de l&#39;angle (y23, n23).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">y23_init_base2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="nd">@self</span><span class="o">.</span><span class="n">y23</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> 
+        <span class="n">y23_init_update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span><span class="nd">@y23_init_base2</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">y23_init_update</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)),</span> <span class="n">x</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.ci_c">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.ci_c">[docs]</a>
+    <span class="k">def</span> <span class="nf">ci_c</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;expression du vecteur reliant le centre de rotation de la came au point de contact Came/Patin. Cette expression est donnée dans la base liée à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Vecteur CI_c dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.li_c">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.li_c">[docs]</a>
+    <span class="k">def</span> <span class="nf">li_c</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;expression du vecteur reliant le centre de rotation du linguet au point de contact Came/Patin. Cette expression est donnée dans la base liée à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Vecteur LI_c dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.li_s">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.li_s">[docs]</a>
+    <span class="k">def</span> <span class="nf">li_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;expression du vecteur reliant le centre de rotation de la came au point de contact Soupape/Patin. Cette expression est donnée dans la base liée à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Vecteur LI_s dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">rps</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">z1</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.phi_doac">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.phi_doac">[docs]</a>
+    <span class="k">def</span> <span class="nf">phi_doac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span> <span class="p">,</span> <span class="n">pas</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span> <span class="mf">0.0005</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule une approxiamtion par différences finies de la dérivée de l&#39;angle phi (voir la définition de l&#39;angle dans le rapport) par rapport à l&#39;angle de rotation de la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Dérivée de l&#39;angle phi.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">ac</span><span class="o">+</span><span class="n">pas</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">ac</span><span class="o">-</span><span class="n">pas</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pas</span>    </div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.phi">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.phi">[docs]</a>
+    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;angle phi (voir la définition de l&#39;angle dans le rapport) en fonction de l&#39;angle de rotation de la came. Pour la démonstration de la formule, voir le rapport associé. Cet angle permet de repérer la position du point de contct Came/Patin.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Angle phi.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">cb_doac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">eta_doac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">tan_phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">cb_doac</span><span class="p">)</span><span class="o">/</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">eta_doac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">tan_phi</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.eta_doac">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.eta_doac">[docs]</a>
+    <span class="k">def</span> <span class="nf">eta_doac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la dérivée de l&#39;angle eta (voir la définition de l&#39;angle dans le rapport) par rapport l&#39;angle de rotation de la came. Pour la démonstration de l&#39;équation, voir le rapport associé.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Dérivée de eta par rapport à l&#39;angle de roation de la came.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cos_eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cos_eta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">cb_doac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+
+        <span class="n">cos_eta_masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cos_eta</span><span class="p">),</span> <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">cos_eta</span><span class="o">**</span><span class="mi">2</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">)))</span>
+        <span class="n">factor1</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sgn_eta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span><span class="o">/</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb0</span><span class="p">)</span><span class="o">/</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cos_eta_masked</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">factor1</span><span class="p">[</span><span class="n">cos_eta_masked</span><span class="o">.</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">factor2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, j -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb_doac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb0</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">cb_doac</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, j -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb0</span><span class="p">)</span><span class="o">/</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">factor1</span> <span class="o">*</span><span class="n">factor2</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.cb_doac">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.cb_doac">[docs]</a>
+    <span class="k">def</span> <span class="nf">cb_doac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la dérivée du vecteur CB, par rapport à l&#39;angle de rotation de la came dans le repère lié à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Dérivée de CB par rapport à l&#39;angle de roation de la came dans le repère lié à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.eta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.eta">[docs]</a>
+    <span class="k">def</span> <span class="nf">eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;angle eta en fonction de l&#39;angle de rotation de la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Angle eta.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cos_eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cos_eta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span>
+        <span class="n">abs_eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abs_angle_from_cos</span><span class="p">(</span><span class="n">cos_eta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sgn_eta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span><span class="o">*</span><span class="n">abs_eta</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.abs_angle_from_cos">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.abs_angle_from_cos">[docs]</a>
+    <span class="k">def</span> <span class="nf">abs_angle_from_cos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cos_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fonction utilitaire qui calcule la valeur absolue d&#39;un angle en fonction de son cosinus.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            cos_angle (float): Cosinus de l&#39;angle.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Valeur absolue de l&#39;angle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">angle_defined</span> <span class="o">=</span> <span class="p">(</span><span class="n">cos_angle</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cos_angle</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">angle_sup</span> <span class="o">=</span> <span class="n">cos_angle</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+        <span class="n">angle_inf</span> <span class="o">=</span> <span class="n">cos_angle</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cos_angle</span><span class="p">))</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">angle_inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">angle_defined</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">cos_angle</span><span class="p">[</span><span class="n">angle_defined</span><span class="p">])</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">angle_sup</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.cos_eta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.cos_eta">[docs]</a>
+    <span class="k">def</span> <span class="nf">cos_eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le cosinus de l&#39;angle eta, angle entre les vecteur y230 et y23 (voir définition dans le rapport). Ce calcule est basé sur le produit scalaire.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Cosinus de l&#39;angle eta.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, j -&gt; i&quot;</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb0</span><span class="p">)</span><span class="o">/</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb0</span><span class="p">)</span><span class="o">/</span><span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.sgn_eta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.sgn_eta">[docs]</a>
+    <span class="k">def</span> <span class="nf">sgn_eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le signe de l&#39;angle eta, angle entre les vecteur y230 et y23 (voir définition dans le rapport). Ce calcule est basé sur le produit vectoriel.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Cosinus de l&#39;angle eta.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">(</span><span class="n">ac</span><span class="p">)),</span> <span class="n">x</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.cb">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.cb">[docs]</a>
+    <span class="k">def</span> <span class="nf">cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur CB entre le centre de rotation de la came et le centre du patin en contact avec la came. L&#39;expression finale est donnée dans la base liée à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Vecteur CB dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cl</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.lb">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.lb">[docs]</a>
+    <span class="k">def</span> <span class="nf">lb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule le vecteur LB entre le centre de rotation du linguet et le centre du patin en contact avec la came. L&#39;expression finale est donnée dans la base liée à la soupape. La méthode utilisée est la suivante. Connaissant le vecteur LB0 pour une levée nulle dans la base liée à la soupape, on l&#39;exprime dans la base liée au linguet par rotation. En effet LB est constant dans cette base. On repasse ensuite dans la base liée à la soupape en faisant une rotation inverse.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Vecteur LB dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lb_base2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">@</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">cl</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> 
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span><span class="nd">@lb_base2</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.compute_cb0">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.compute_cb0">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_cb0</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule le vecteur CB0. CB0 relie le centre de rotation de la came au le centre du patin à levée nulle. L&#39;expression finale est donnée dans la base liée à la soupape.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray : Vecteur CB0 dans la base liée à la soupape.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y23_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rb</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="p">)</span><span class="o">*</span><span class="n">y23_init</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.di_soup">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.di_soup">[docs]</a>
+    <span class="k">def</span> <span class="nf">di_soup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule la position du point de contact en la soupape et son patin. Cette position est repérée par une distance à l&#39;axe de révolution de la soupape. Cette distance est signée afin de repérer de quel côté de l&#39;axe on se trouve.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Distance d_i_s, signée.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ol</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueLevier.beta_ddoac">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.beta_ddoac">[docs]</a>
+    <span class="k">def</span> <span class="nf">beta_ddoac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule la dérivée seconde de l&#39;angle beta d&#39;inclinaison du linguet par rapport à l&#39;angle de rotation de la came.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Dérivée seconde de l&#39;angle beta par rapport à l&#39;angle de rotation de la came.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbd_ddoac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.beta_doac">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.beta_doac">[docs]</a>
+    <span class="k">def</span> <span class="nf">beta_doac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule la dérivée première de l&#39;angle beta d&#39;inclinaison du linguet par rapport à l&#39;angle de rotation de la came. _doac signifie &quot;derivative of angle came&quot;.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Dérivée première de l&#39;angle beta par rapport à l&#39;angle de rotation de la came.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">lbd_doac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lbd_doac</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensrot</span><span class="o">*</span><span class="n">lbd_doac</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueLevier.beta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueLevier.beta">[docs]</a>
+    <span class="k">def</span> <span class="nf">beta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calcule l&#39;angle beta d&#39;inclinaison du linguet.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ac (float): Angle de rotation de la came.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float : Inclinaison du linguet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lbd</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rps</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueDirecte">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueDirecte">[docs]</a>
+<span class="k">class</span> <span class="nc">CalculsCinematiqueDirecte</span><span class="p">(</span><span class="n">CalculsCinematique</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">AssemblageDirecte</span><span class="p">,</span> <span class="n">loiscame</span> <span class="p">:</span> <span class="n">LoisCame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">assemblage</span><span class="p">,</span> <span class="n">loiscame</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="CalculsCinematiqueDirecte.vitesse_glissement">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueDirecte.vitesse_glissement">[docs]</a>
+    <span class="k">def</span> <span class="nf">vitesse_glissement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueDirecte.position_contact">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueDirecte.position_contact">[docs]</a>
+    <span class="k">def</span> <span class="nf">position_contact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">contact</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame">[docs]</a>
+<span class="k">class</span> <span class="nc">CalculsCinematiqueFromCame</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">AssemblageLinguet</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__yc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__zc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__oc</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">coords_came</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__ol</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">coords_levier</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sensrot</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">sens_rotation_came</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rb</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">came</span><span class="o">.</span><span class="n">rayon_base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rpc</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">patin_came</span><span class="o">.</span><span class="n">rayon_courbure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rps</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">patin_soupape</span><span class="o">.</span><span class="n">rayon_courbure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__l_ling</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">longueur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__gamma0</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">angle_leviercame_init</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rho</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">came</span><span class="o">.</span><span class="n">profil</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rho_doeps</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">came</span><span class="o">.</span><span class="n">profil</span><span class="o">.</span><span class="n">derivative</span><span class="p">(</span><span class="n">nu</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rho_ddoeps</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">came</span><span class="o">.</span><span class="n">profil</span><span class="o">.</span><span class="n">derivative</span><span class="p">(</span><span class="n">nu</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__beta0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_beta0</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">oc</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__norm_lc</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__lb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_lb</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__norm_lb</span> <span class="o">=</span> <span class="n">npl</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__x</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">yc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__yc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">zc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__zc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">oc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__oc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ol</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sensrot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sensrot</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rb</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rpc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rpc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rps</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">l_ling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__l_ling</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gamma0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gamma0</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rho</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rho</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rho_doeps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rho_doeps</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rho_ddoeps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rho_ddoeps</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">beta0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__beta0</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">norm_lc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__norm_lc</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lb</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">norm_lb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__norm_lb</span>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.matrot">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.matrot">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">matrot</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">cos_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">sin_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+
+        <span class="n">matrices</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">angle</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos_angle</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos_angle</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin_angle</span>
+        <span class="n">matrices</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sin_angle</span>
+
+        <span class="k">return</span> <span class="n">matrices</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.u">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.u">[docs]</a>
+    <span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.v">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.v">[docs]</a>
+    <span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.t23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.t23">[docs]</a>
+    <span class="k">def</span> <span class="nf">t23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">rho_doeps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho_doeps</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">norm_spd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rho_doeps</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i, ij -&gt; ij&quot;</span><span class="p">,</span> <span class="n">rho_doeps</span><span class="o">/</span><span class="n">norm_spd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;i, ij -&gt; ij&quot;</span><span class="p">,</span> <span class="n">rho</span><span class="o">/</span><span class="n">norm_spd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.n23">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.n23">[docs]</a>
+    <span class="k">def</span> <span class="nf">n23</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t23</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.y1">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.y1">[docs]</a>
+    <span class="k">def</span> <span class="nf">y1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="n">ac</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.z1">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.z1">[docs]</a>
+    <span class="k">def</span> <span class="nf">z1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y1</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.y2">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.y2">[docs]</a>
+    <span class="k">def</span> <span class="nf">y2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+        <span class="n">matrot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+        <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y1</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ijk, ik -&gt; ij&quot;</span><span class="p">,</span> <span class="n">matrot</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.lbd">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.lbd">[docs]</a>
+    <span class="k">def</span> <span class="nf">lbd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solve_fermeture_geom</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="n">eps</span><span class="p">)</span>
+        <span class="n">oi_soup_base3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">oc_base3</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ci_soup_base3</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">oi_soup_base3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z1</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.ci_soup_base3">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.ci_soup_base3">[docs]</a>
+    <span class="k">def</span> <span class="nf">ci_soup_base3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+        <span class="n">cl_base3</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="n">ac</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@self</span><span class="o">.</span><span class="n">lc</span>
+        <span class="n">la_base3</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">y2</span><span class="p">(</span><span class="n">ac</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="n">ai_base3</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rps</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">z1</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="n">cl_base3</span> <span class="o">+</span> <span class="n">la_base3</span> <span class="o">+</span> <span class="n">ai_base3</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.oc_base3">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.oc_base3">[docs]</a>
+    <span class="k">def</span> <span class="nf">oc_base3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="n">ac</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span><span class="nd">@self</span><span class="o">.</span><span class="n">oc</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.beta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.beta">[docs]</a>
+    <span class="k">def</span> <span class="nf">beta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">term_eps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eq1_fermeture_geom</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">ac</span><span class="p">)</span>
+        <span class="n">term_eps_doac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span>
+        <span class="n">term_eps_doac</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">term_eps</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">term_eps</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">ac</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="n">ac</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">term_eps_doac</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">term_eps</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">term_eps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">ac</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ac</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">term_eps_doac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">term_eps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">term_eps</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">ac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ac</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">term_eps_doac_neg</span> <span class="o">=</span> <span class="p">(</span><span class="n">term_eps_doac</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">term_eps_doac_pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">term_eps_doac</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">discriminant</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_lb</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">term_eps</span><span class="o">**</span><span class="mi">2</span>
+
+        <span class="n">tan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ac</span><span class="p">))</span>
+        <span class="n">tan</span><span class="p">[</span><span class="n">term_eps_doac_neg</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discriminant</span><span class="p">[</span><span class="n">term_eps_doac_neg</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="n">term_eps</span><span class="p">[</span><span class="n">term_eps_doac_neg</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">tan</span><span class="p">[</span><span class="n">term_eps_doac_pos</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discriminant</span><span class="p">[</span><span class="n">term_eps_doac_pos</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="n">term_eps</span><span class="p">[</span><span class="n">term_eps_doac_pos</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lb</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">tan</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">beta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.solve_fermeture_geom">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.solve_fermeture_geom">[docs]</a>
+    <span class="k">def</span> <span class="nf">solve_fermeture_geom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acs</span><span class="p">):</span>
+        <span class="n">sols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ac</span> <span class="ow">in</span> <span class="n">acs</span><span class="p">:</span>
+            <span class="n">sol</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">root_scalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">equation_fermeture_geom</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">ac</span><span class="p">,),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;secant&quot;</span><span class="p">)</span>
+            <span class="n">sols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sols</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.equation_fermeture_geom">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.equation_fermeture_geom">[docs]</a>
+    <span class="k">def</span> <span class="nf">equation_fermeture_geom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="n">term1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eq1_fermeture_geom</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">ac</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> 
+        <span class="n">term2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eq2_fermeture_geom</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">ac</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_lb</span><span class="o">**</span><span class="mi">2</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.eq1_fermeture_geom">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.eq1_fermeture_geom">[docs]</a>
+    <span class="k">def</span> <span class="nf">eq1_fermeture_geom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">lc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">eps</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">+</span> <span class="n">rho</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.eq2_fermeture_geom">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.eq2_fermeture_geom">[docs]</a>
+    <span class="k">def</span> <span class="nf">eq2_fermeture_geom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">ac</span><span class="p">):</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ac</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">eps</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">+</span> <span class="n">rho</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.delta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.delta">[docs]</a>
+    <span class="k">def</span> <span class="nf">delta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">cos_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cos_delta</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span>
+        <span class="n">cos_delta_defined</span> <span class="o">=</span> <span class="p">(</span><span class="n">cos_delta</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cos_delta</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">cos_delta_sup</span> <span class="o">=</span> <span class="n">cos_delta</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">cos_delta_inf</span> <span class="o">=</span> <span class="n">cos_delta</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="n">abs_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cos_delta</span><span class="p">))</span>
+        <span class="n">abs_delta</span><span class="p">[</span><span class="n">cos_delta_inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">abs_delta</span><span class="p">[</span><span class="n">cos_delta_defined</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">cos_delta</span><span class="p">[</span><span class="n">cos_delta_defined</span><span class="p">])</span>
+        <span class="n">abs_delta</span><span class="p">[</span><span class="n">cos_delta_sup</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sgn_delta</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span><span class="o">*</span><span class="n">abs_delta</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.cos_delta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.cos_delta">[docs]</a>
+    <span class="k">def</span> <span class="nf">cos_delta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="n">n23</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij, ij -&gt; i&quot;</span><span class="p">,</span> <span class="n">u</span> <span class="p">,</span> <span class="n">n23</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.sgn_delta">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.sgn_delta">[docs]</a>
+    <span class="k">def</span> <span class="nf">sgn_delta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eps</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">eps</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n23</span><span class="p">(</span><span class="n">eps</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">))</span></div>
+
+    
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.compute_lb">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.compute_lb">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_lb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">y23_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma0</span><span class="p">)])</span>
+        <span class="n">lb0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lc</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rb</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc</span><span class="p">)</span><span class="o">*</span><span class="n">y23_init</span>
+        <span class="n">rot12</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrot</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">beta0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">rot12</span><span class="nd">@lb0</span> </div>
+
+
+<div class="viewcode-block" id="CalculsCinematiqueFromCame.compute_beta0">
+<a class="viewcode-back" href="../../../../softcam.domain.services.html#softcam.domain.services.calculscinematique.CalculsCinematiqueFromCame.compute_beta0">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_beta0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">ol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rps</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">l_ling</span><span class="p">)</span>    </div>
+</div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Jérémy Lemaitre
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../../_static/documentation_options.js?v=e8570148"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../../_static/translations.js?v=041d0952"></script>
+    </body>
+</html>

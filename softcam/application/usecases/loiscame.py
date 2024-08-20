@@ -43,7 +43,6 @@ class OptimiseLoisAccel():
         self.vitesse_rampe = vitesse_squel[-1, 1]
         self.levee_rampe = levee_squel[1, 1]
         self.accel_squel = accel_squel
-        pass
 
     def __call__(self, accelmax) -> LoisPhaseAccel:
         
@@ -524,6 +523,3 @@ class CalculEfficaciteV2():
         aire_reelle, err = scitg.quad(self.calcloisrelles.levee_reelle, ac_attaque_ouverture, ac_attaque_fermeture, args=(jeu,))
         
         return aire_reelle /aire_ideale
-
-if __name__=="__main__":  
-    pass

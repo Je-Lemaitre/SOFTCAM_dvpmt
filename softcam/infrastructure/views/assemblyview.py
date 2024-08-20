@@ -65,10 +65,8 @@ class RockerArmAssemblyDialog(QDialog, Ui_RockerArmAssemblyDialog):
     
     def accept(self):
         sensrot = self.sensrotComboBox.currentText()
-        if sensrot == "Horaire" :
-            sens_rotation_came = -1
-        else :
-            sens_rotation_came = 1
+        sens_rotation_came = -1 if sensrot == "Horaire" else 1
+        
         coords_levier = [0.0, float(self.ylEdit.text()) *unit.MILLIMETER_TO_METER, float(self.zlEdit.text()) *unit.MILLIMETER_TO_METER]
         coords_came = [0.0, float(self.ycEdit.text()) *unit.MILLIMETER_TO_METER, float(self.zcEdit.text()) *unit.MILLIMETER_TO_METER]
         angle_leviercame_init = float(self.gammaEdit.text()) *unit.DEGREE_TO_RADIAN

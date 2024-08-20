@@ -26,21 +26,21 @@ class RollerDialog(QDialog, Ui_RollerDialog):
         # Intervalles Affichage par Défault
         self.x_range = (0, 200)
         self.y_range = (self.controller.current_study.assemblage.came.rayon_base /unit.MILLIMETER_TO_METER, 40)
-        
+
         roller = self.controller.current_study.fabrication.roller
-        try :
+        try:
             self.curvedata = np.column_stack((
                 roller.deplacement_roller[:,0] /unit.DEGREE_TO_RADIAN,
                 roller.deplacement_roller[:,1] /unit.MILLIMETER_TO_METER
             ))
             self.displacementCurve.setData(self.curvedata)
-        except :
+        except Exception:
             self.curvedata = None
 
         self.rollerradiusEdit.setText(str(round(roller.rayon_roller /unit.MILLIMETER_TO_METER, 3)))
-        
+
         self.stackedWidget.setCurrentIndex(0)
-        
+
         self.computeButton.clicked.connect(self.compute_displacement)
         self.resetviewButton.clicked.connect(self.reset_view)
         

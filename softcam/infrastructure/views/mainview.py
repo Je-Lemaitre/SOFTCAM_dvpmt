@@ -112,16 +112,14 @@ class MainView(QMainWindow, Ui_MainWindow):
     def open_study(self):
         filebrowser_dialog = QFileDialog()
         file = filebrowser_dialog.getOpenFileName(filter = 'JSON Files (*.json)')
-        open_path = file[0]
-        if open_path :
+        if open_path := file[0]:
             self.controller.update_study_path(open_path)
             self.controller.load_study()
             self.study_name = self.controller.current_study.nom
     def save_study(self):
         filebrowser_dialog = QFileDialog()
         file = filebrowser_dialog.getSaveFileName(dir = f"{self.study_name}.json", filter = 'JSON Files (*.json)')
-        save_path = file[0] 
-        if save_path :
+        if save_path := file[0]:
             self.controller.update_study_path(save_path)
             self.controller.save_study()
     def export_study(self):

@@ -64,7 +64,7 @@ class LoisPhaseAccel:
     j_spl : scitp.BSpline = None
 
     def __post_init__(self):
-        if not (self.a_spl is None):
+        if self.a_spl is not None:
             self.v_spl = self.a_spl.antiderivative()
             self.l_spl = self.v_spl.antiderivative()
             self.j_spl = self.a_spl.derivative()
@@ -95,10 +95,7 @@ class LoisPhaseAccel:
 
     @classmethod
     def from_dict(cls, d : dict):
-        if d["a_spl"] is None :
-            a_spl_import = None
-        else :
-            a_spl_import = scitp.BSpline(d["a_spl"])
+        a_spl_import = None if d["a_spl"] is None else scitp.BSpline(d["a_spl"])
         return cls(
             duree_accel = d["duree_accel"],
             levee_rampe = d["levee_rampe"],
@@ -107,10 +104,7 @@ class LoisPhaseAccel:
         )
 
     def to_dict(self):
-        if self.a_spl is None :
-            a_spl_export = None
-        else :
-            a_spl_export = self.a_spl.__dict__
+        a_spl_export = None if self.a_spl is None else self.a_spl.__dict__
         return {
             "duree_accel" : self.duree_accel,
             "levee_rampe" : self.levee_rampe,
@@ -129,7 +123,7 @@ class LoisPhaseRaccord:
     j_spl : scitp.BSpline = None
 
     def __post_init__(self):
-        if not (self.a_spl is None):
+        if self.a_spl is not None:
             self.v_spl = self.a_spl.antiderivative()
             self.l_spl = self.v_spl.antiderivative()
             self.j_spl = self.a_spl.derivative()
@@ -160,10 +154,7 @@ class LoisPhaseRaccord:
     
     @classmethod
     def from_dict(cls, d):
-        if d["a_spl"] is None :
-            a_spl_import = None
-        else :
-            a_spl_import = scitp.BSpline(d["a_spl"])
+        a_spl_import = None if d["a_spl"] is None else scitp.BSpline(d["a_spl"])
         return cls(
             duree_raccord = d["duree_raccord"],
             levee_init = d["levee_init"],
@@ -172,10 +163,7 @@ class LoisPhaseRaccord:
         )
     
     def to_dict(self):
-        if self.a_spl is None :
-            a_spl_export = None
-        else :
-            a_spl_export = self.a_spl.__dict__
+        a_spl_export = None if self.a_spl is None else self.a_spl.__dict__
         return {
             "duree_raccord" : self.duree_raccord,
             "levee_init" : self.levee_init,
@@ -193,7 +181,7 @@ class LoisPhaseDecel:
     j_spl : scitp.BSpline = None
 
     def __post_init__(self):
-        if not (self.a_spl is None):
+        if self.a_spl is not None:
             self.v_spl = self.a_spl.antiderivative()
             self.l_spl = self.v_spl.antiderivative()
             self.j_spl = self.a_spl.derivative()
@@ -224,20 +212,14 @@ class LoisPhaseDecel:
 
     @classmethod
     def from_dict(cls, d):
-        if d["a_spl"] is None :
-            a_spl_import = None
-        else :
-            a_spl_import = scitp.BSpline(d["a_spl"]) 
+        a_spl_import = None if d["a_spl"] is None else scitp.BSpline(d["a_spl"])
         return cls(
             duree_decel = d["duree_decel"],
             leveemax = d["leveemax"],
             a_spl = a_spl_import
         )    
     def to_dict(self):
-        if self.a_spl is None :
-            a_spl_export = None
-        else :
-            a_spl_export = self.a_spl.__dict__
+        a_spl_export = None if self.a_spl is None else self.a_spl.__dict__
         return {
             "duree_decel" : self.duree_decel,
             "leveemax" : self.leveemax,
@@ -255,7 +237,7 @@ class LoisPhaseDecelV2:
     j_spl : scitp.BSpline = None
 
     def __post_init__(self):
-        if not (self.a_spl is None):
+        if self.a_spl is not None:
             self.v_spl = self.a_spl.antiderivative()
             self.l_spl = self.v_spl.antiderivative()
             self.j_spl = self.a_spl.derivative()
@@ -286,20 +268,14 @@ class LoisPhaseDecelV2:
 
     @classmethod
     def from_dict(cls, d):
-        if d["a_spl"] is None :
-            a_spl_import = None
-        else :
-            a_spl_import = scitp.BSpline(d["a_spl"]) 
+        a_spl_import = None if d["a_spl"] is None else scitp.BSpline(d["a_spl"])
         return cls(
             duree_decel = d["duree_decel"],
             leveemax = d["leveemax"],
             a_spl = a_spl_import
         )    
     def to_dict(self):
-        if self.a_spl is None :
-            a_spl_export = None
-        else :
-            a_spl_export = self.a_spl.__dict__
+        a_spl_export = None if self.a_spl is None else self.a_spl.__dict__
         return {
             "duree_decel" : self.duree_decel,
             "leveemax" : self.leveemax,

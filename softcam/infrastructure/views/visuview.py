@@ -47,14 +47,11 @@ class VisuDialog(QDialog, Ui_VisuDialog):
         cartesian_profile = self.controller.compute_profile()
         self.cartesian_profile = cartesian_profile /unit.MILLIMETER_TO_METER
         self.profileCurve.setData(self.cartesian_profile[:,1], self.cartesian_profile[:,2])
-        
-        if self.stackedWidget.currentIndex() == 1 : # Rayon de Courbure
+
+        if self.stackedWidget.currentIndex() == 1: # Rayon de Courbure
             curvature = self.controller.compute_curvature()
             self.curvature = np.column_stack((curvature[:,0] /unit.DEGREE_TO_RADIAN, curvature[:,1] /unit.MILLIMETER_TO_METER))
             self.curvatureCurve.setData(self.curvature[:,0], self.curvature[:,1])
-
-        elif self.stackedWidget.currentIndex() == 2 : # Animation Cinématique
-            pass
 
     def reset_view(self):
         self.profilePlotWidget.setXRange(*self.angle_range)

@@ -44,7 +44,6 @@ class CalculProfil():
         self.duree_levee = controller.current_study.loiscame.dac_leveemax_ouverture + controller.current_study.loiscame.dac_leveemax_fermeture
         self.angles_evalpts = np.arange(0, self.duree_levee, controller.precision)
         self.calcprofil = controller.calcprofil
-        pass
 
     def __call__(self):
         return self.calcprofil.profil_cartesien(self.angles_evalpts)

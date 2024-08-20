@@ -14,4 +14,3 @@ class ControllerInterface(ABC):
         self.calcprofil = CalculsProfilCame()
         self.calcmecanique = CalculsMecanique()
         self.precision = 0.001
-        pass

@@ -66,7 +66,7 @@ class Soupape():
 
     @classmethod
     def from_dict(cls, d):
-        if d["poussoir"] == None :
+        if d["poussoir"] is None:
             return cls(
                 masse_soupape = d["masse_soupape"],
                 masse_coupelle = d["masse_coupelle"],
@@ -76,7 +76,7 @@ class Soupape():
                 coefficient_poisson = d["coefficient_poisson"]
             )
 
-        else :
+        else:
             return cls(
                 masse_soupape = d["masse_soupape"],
                 masse_coupelle = d["masse_coupelle"],
@@ -87,11 +87,7 @@ class Soupape():
             )
 
     def to_dict(self):
-        if self.poussoir is None :
-            dict_poussoir = None
-        else :
-            dict_poussoir = self.poussoir.__dict__
-
+        dict_poussoir = None if self.poussoir is None else self.poussoir.__dict__
         return {
             "masse_soupape" : self.masse_soupape,
             "masse_coupelle" : self.masse_coupelle,

@@ -26,15 +26,15 @@ class CurvatureDialog(QDialog, Ui_CurvatureDialog):
         # Intervalles Affichage par Défault
         self.x_range = (0, 200)
         self.y_range = (-200, 200)
-        
+
         curvature = self.controller.current_study.fabrication.courbure
-        try :
+        try:
             self.curvedata = np.column_stack((
                 curvature.rayon_courbure[:,0] /unit.DEGREE_TO_RADIAN,
                 curvature.rayon_courbure[:,1] /unit.MILLIMETER_TO_METER
             ))
             self.curvatureCurve.setData(self.curvedata)
-        except :
+        except Exception:
             self.curvedata = None
 
         self.limitradiusEdit.setText(str(round(curvature.diametre_meule_taillage /unit.MILLIMETER_TO_METER, 3)))
@@ -45,11 +45,11 @@ class CurvatureDialog(QDialog, Ui_CurvatureDialog):
             movable=True,
             pen = pg.mkPen(color='r', style=pg.QtCore.Qt.DashLine, width=2) 
             )
-        
+
         self.curvaturePlotWidget.addItem(self.maxradius_line)
-        
+
         self.stackedWidget.setCurrentIndex(0)
-        
+
         self.computeButton.clicked.connect(self.compute_curvature)
         self.limitradiusEdit.textChanged.connect(self.move_line)
         self.resetviewButton.clicked.connect(self.reset_view)

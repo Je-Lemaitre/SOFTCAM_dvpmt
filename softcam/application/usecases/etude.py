@@ -17,8 +17,8 @@ class CreeEtude():
     
     def __call__(self, name, type_assemblage, step_time) -> Etude :
         study = self.init_repo.load_data()
-        id = uuid.uuid4()
-        study.id = id
+        one_id = uuid.uuid4()
+        study.id = one_id
         study.nom = name
         study.type_assemblage = type_assemblage
         study.pas_temporel = step_time
