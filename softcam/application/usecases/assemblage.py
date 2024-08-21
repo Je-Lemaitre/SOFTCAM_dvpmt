@@ -1,5 +1,6 @@
+import os
 import sys
-sys.path.append("c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam")
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import numpy as np
 from application.interfaces.controller_interface import ControllerInterface

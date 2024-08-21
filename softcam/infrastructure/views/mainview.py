@@ -1,8 +1,9 @@
-import sys
 import os
-sys.path.append("c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam")
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from PySide6.QtWidgets import QMainWindow, QDialog, QFileDialog
+
 from infrastructure.ui.main_window import Ui_MainWindow
 from infrastructure.ui.newstudy_dialog import Ui_NewStudyDialog
 from infrastructure.views.assemblyview import RockerArmAssemblyDialog, FlatTappetAssemblyDialog, RollerTappetAssemblyDialog

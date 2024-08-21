@@ -1,11 +1,13 @@
 
+import os
 import sys
-sys.path.append("c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam")
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as ptc
 from matplotlib.axes import Axes
+
 import domain.services.unitees as unit
     
 def create_fig(ax : Axes):

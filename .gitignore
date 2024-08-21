@@ -1,4 +1,5 @@
 data/
+docs/
 .venv/
 .pytest_cache/
 .vscode/

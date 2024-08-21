@@ -1,13 +1,13 @@
-# This Python file uses the following encoding: utf-8
+import os
 import sys
-sys.path.append("c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam")
-import numpy as np
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Qt
 import pyqtgraph as pg
 
 import domain.services.unitees as unit
+
 from infrastructure.ui.slidingspeed_dialog import Ui_SlidingSpeedDialog
 from infrastructure.controllers.controller import Controller
 

@@ -1,10 +1,12 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 import uuid
 
 import numpy as np
 
 from domain.entities.etude import Etude
-from domain.entities.assemblage import AssemblageLinguet
-from domain.entities.loiscame import LoisCame
 from domain.services.calculsmecanique import CalculsMecanique, CalculsMecaniqueLevier, CalculsMecaniqueDirecte
 from domain.services.calculscinematique import CalculsCinematique, CalculsCinematiqueLevier, CalculsCinematiqueDirecte
 from domain.services.calculsprofilcame import CalculsProfilCame, CalculsProfilCameLevier, CalculsProfilCameDirecte
@@ -46,10 +48,24 @@ class ExportExcel():
         pass
 
 class CreeUtilitairesCalcul() :
+    """Crée les utilitaires de calcul qui permettront de calculer les critères de dimensionnement.
+
+    Cette classe crée les utilitaires de calcul pour pouvoir ensuite calculer les critères de dimensionnement. Ces utilitaires sont : CalculsCinematique, CalculsProfilCame et CalculsMecanique.
+
+    Args:
+        controller (ControllerInterface): Contrôleur de l'application.
+
+    Attributes:
+        study (object): L'étude chargée dans l'application.
+
+    Methods:
+        __call__(angles_rotation_evalpts: np.ndarray) -> tuple[CalculsCinematique, CalculsProfilCame, CalculsMecanique]:
+            Crée les utilitaire de calcul pour la cinématique, pour le profil et pour les critères de dimensionnement mécaniques.
+    """
     def __init__(self, controller : ControllerInterface):
         self.study = controller.current_study
 
-    def __call__(self, angles_rotation_evalpts):
+    def __call__(self, angles_rotation_evalpts: np.ndarray) -> tuple[CalculsCinematique, CalculsProfilCame, CalculsMecanique]:
         if self.study.type_assemblage == "Linguet / Basculeur":
             calccinematique = CalculsCinematiqueLevier(
                 assemblage=self.study.assemblage,
@@ -76,21 +92,19 @@ class CalculPositionContact():
     def __init__(self, controller : ControllerInterface):
         self.calccinematique = controller.calccinematique
     
-    def __call__(self, angles_rotation, contact = None):
+    def __call__(self, angles_rotation: np.ndarray, contact = None) -> np.ndarray:
         return self.calccinematique.position_contact(angles_rotation, contact)
     
 class CalculVitesseGlissement():
     def __init__(self, controller : ControllerInterface):
         self.calcmecanique = controller.calcmecanique
     
-    def __call__(self, angles_rotation, regime_moteur : float = 785, contact : str = None):
+    def __call__(self, angles_rotation: np.ndarray, regime_moteur: float= 785, contact: str= None):
         return self.calcmecanique.vitesse_glissement(angles_rotation, regime_moteur, contact)
-
 
 class CalculPressionHertz():
     def __init__(self, controller : ControllerInterface):
         self.calcmecanique = controller.calcmecanique
 
-    def __call__(self, angles_rotation, regime_moteur : float = 785, contact : str = None) -> np.ndarray :
-        
+    def __call__(self, angles_rotation: np.ndarray, regime_moteur: float= 785, contact: str= None) -> np.ndarray :
         return self.calcmecanique.pression_hertz(angles_rotation, regime_moteur, contact)

@@ -1,7 +1,10 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 import dataclasses
-import numpy as np
+
 import scipy.interpolate as scitp
-from domain.services.unitees import DEGREE_TO_RADIAN
 
 @dataclasses.dataclass
 class Came:

@@ -1,8 +1,13 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 import dataclasses
 from abc import ABC, abstractmethod
+
 import numpy as np
 
-from domain.services.unitees import DEGREE_TO_RADIAN, RPM_TO_RADPSEC, MEGAPASCAL_TO_PASCAL
+from domain.services.unitees import DEGREE_TO_RADIAN
 from domain.entities.came import Came
 from domain.entities.levier import Levier
 from domain.entities.ressort import Ressort

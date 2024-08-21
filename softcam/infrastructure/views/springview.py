@@ -1,9 +1,11 @@
+import os
 import sys
-sys.path.append("c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam")
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from PySide6.QtWidgets import QDialog
 
 import domain.services.unitees as unit
+
 from infrastructure.ui.spring_dialog import Ui_RessortDialog
 from infrastructure.controllers.controller import Controller
 

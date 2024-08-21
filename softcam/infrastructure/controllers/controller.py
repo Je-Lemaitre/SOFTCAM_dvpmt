@@ -1,4 +1,6 @@
-# interface_adapters/controllers/my_controller.py
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from scipy.interpolate import BSpline
 import numpy as np
@@ -15,6 +17,89 @@ from application.interfaces.controller_interface import ControllerInterface
 from domain.entities.soupape import Poussoir
 
 class Controller(ControllerInterface):
+    """Implémentation complète du contrôleur.
+
+    Cette classe permet de contrôler l'application et de faire le lien entre les données stockées, la logique de l'application et l'interface utilisateur. Chaque méthode de cette classe représente un cas d'usage et appelle la classe correspondante parmi celles du module application.usecases . C'est également cette classe qui permet de stocker les données temporaires de l'application.
+    Les fonctions qui réalisent des mises à jours sont appelées à chaque fois que l'utilisateur clique sur le bouton "Ok" d'une boite de dialogue. 
+
+    Args:
+        repository (RepositoryInterface): Le repository utilisé pour stocker les données.
+
+    Attributes:
+        repository (RepositoryInterface): Le repository utilisé pour stocker les données.
+        precision (float): La précision utilisée pour les calculs, en angle de rotation de la came, 0.001 par défaut.
+        current_study (Etude): L'étude chargée.
+        current_laws (LoisCame): Les lois de distribution étudiées.
+        calccinematique (CalculsCinematique): Utilitaire pour les calculs cinématique.
+        calcprofil (CalculsProfilCame): Utilitaire pour les calculs des grandeurs liées au profil de la came.
+        calcmecanique (CalculsMecanique): Utilitaire pour les calculs des critères de dimensionnement mécaniques.
+
+    Methods:
+        create_study(name, assembly_type, step_time):
+            Crée une nouvelle loi.
+        load_study():
+            Charge une étude existante.
+        save_study():
+            Sauvegarde l'étude actuellement chargée en session.
+        export_to_excel():
+            Exporte l'étude dans un fichier Excel (non implémentée).
+        load_profile(profile_path):
+            Charge un profil de came existant.
+        update_study_path(path):
+            Met à jour le chemin d'accès à l'étude.
+        update_profile_path(path):
+            Met à jour le chemin d'accès au profil.
+        update_precision(new_precision):
+            Met à jour la précision de calcul.
+        update_options(studyname, stepangle, stepdisplay, steptime):
+            Met à jour les options (non implémenté).
+        update_rockerarmassembly(sens_rotation_came, coords_levier, coords_came, angle_leviercame_init, inclinaison_soupape):
+            Met à jour l'assemblage à levier.
+        update_valve(masse_soupape, masse_coupelle, diametre_soupape, poussoir, module_young, coefficient_poisson):
+            Met à jour la soupape.
+        update_tappet(masse, diametre, rayon_courbure, largeur_courbure, frottement_poussoir_guide):
+            Met à jour le poussoir.
+        update_spring(masse, raideur, precharge):
+            Met à jour le ressort.
+        update_rockerarm(masse, inertie, longueur):
+            Met à jour le levier.
+        update_patin(loc, rayon_courbure, largeur, module_young, coefficient_poisson):
+            Met à jour le patin.
+        update_cam(rayon_base, largeur, module_young, coefficient_poisson, profil):
+            Met à jour la came.
+        update_laws():
+            Met à jour les lois.
+        update_curvature(cutting_radius, curvature):
+            Met à jour le rayon de courbure.
+        update_roller(roller_radius, displacement):
+            Met à jour les coordonnées polaires du centre du roller.
+        optimise_laws(symmetry, valve_float_speed, openaccel_skl_raw, closeaccel_skl_raw, openspeed_skl_raw, closespeed_skl_raw, openlift_skl_raw, closelift_skl_raw, openjoin_angle_raw, closejoin_angle_raw):
+            Ajuste les demi-lois de distribution.
+        compute_effective_laws(clearance):
+            Calcule les lois réelle.
+        compute_opening(clearance):
+            Calcule l'ouverture de la loi de levée.
+        compute_area(clearance):
+            Calcule l'aire sous la courbe de levée réelle.
+        compute_efficiency(clearance):
+            Calcule l'efficacité.
+        compute_profile():
+            Calcule le profil de la came en coordonnées cartésiennes.
+        compute_curvature():
+            Calcule le rayon de courbure de la came.
+        compute_roller_displacement(roller_radius):
+            Calcule les coordonnées polaires du centre du roller.
+        compute_contactpos(contact):
+            Calcul la position du point de contact pour le contact spécifié.
+        compute_hertz_pressure(speed, contact):
+            Calcul la pression de Hertz pour le régime moteur et le contact indiqués.
+        compute_slidingspeed(speed, contact):
+            Calcule la vitesse de glissement pour le régime moteur et le contact indiqués.
+        check_mechanics():
+            Vérifie que les critères de dimensionnement mécaniques sont respectés.
+        check_manufacturing():
+            Vérifie que les critères de dimensionnement de fabrication sont respectés.
+    """
     def __init__(self, repository : RepositoryInterface):
         self.repository = repository
         self.precision = 0.001

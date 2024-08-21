@@ -1,11 +1,12 @@
-# This Python file uses the following encoding: utf-8
-import sys
-sys.path.append("c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam")
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Qt
+
 import domain.services.unitees as unit
+
 from infrastructure.ui.rockerarm_asmb_dialog import Ui_RockerArmAssemblyDialog
 from infrastructure.views.valveview import SoupapeDialog
 from infrastructure.views.springview import RessortDialog
@@ -41,7 +42,7 @@ class RockerArmAssemblyDialog(QDialog, Ui_RockerArmAssemblyDialog):
 
         infrastructure_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         print(infrastructure_path)
-        scheme_path = os.path.join(infrastructure_path, "ui", "resources", "img", "kinematic_diagram.svg")
+        scheme_path = os.path.join(infrastructure_path, "ui", "resources", "img", "parameters_scheme_rockerarm.svg")
         kinematicScheme = disputil.SvgWidget(scheme_path)
         self.kinematicSchemeLayout.addWidget(kinematicScheme)
 

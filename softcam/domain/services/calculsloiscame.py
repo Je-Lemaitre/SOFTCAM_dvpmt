@@ -3,8 +3,6 @@ import numpy.linalg as npl
 import scipy.interpolate as scitp
 import scipy.special as scs
 
-from domain.entities.assemblage import Assemblage, AssemblageLinguet
-
 class CalculRampe():
     """CalculRampe modélise les lois de distribution pour les phases de rampe afin de pouvoir calculer la levée, la vitesse, l'accélération et le jerk.
 
@@ -17,9 +15,26 @@ class CalculRampe():
         vitesse_rampe (float): Vitesse caractéristique de la rampe.
 
     Attributes:
+        dac_r (float): Durée de la phase de rampe.
+        dac_vc (float): Durée de la phase à vitesse constante.
+        dac_apos (float): Durée de la phase d'accélération.
+        lr (float): Levée caractéristique de la rampe.
+        vr (float): Vitesse caractéristique de la rampe.
+        la (float): Levée au début de la phase à vitesse constante.
+        a7 (float), a6 (float), a5 (float), a4 (float): Coefficients du polynôme de degré 7 modélisant la phase d'accélération en début de rampe.
 
     Methods:
-    
+        compute_coeffs_accel(): Calcule les coefficients du polynôme de degré 7 modélisant la levée pendant la phase d'accéération en début de rampre.
+        j(ac: float): Calcule le jerk pour la phase de rampe.
+        a(ac: float): Calcule l'accélération pour la phase de rampe.
+        v(ac: float): Calcule la vitesse pour la phase de rampe.
+        l(ac: float): Calcule la levée pour la phase de rampe.
+        compute_levee_accel(): Calcule la levée en début de phase à vitesse constante.
+        matrix_pb(): Génère la matrice du système d'équations permettant la détermination de la phase d'accélération en début de rampe.
+        bcs_pb(): Génère le vecteur des conditions aux limites.
+        from_dict(d: dict): Crée une instance de CalculRampe à partir d'un dictionnaire.
+        to_dict() -> dict: Convertit l'instance en dictionnaire.
+
     Raises:
         ValueError: Si certaines durées sont négatives ou nulles ou si la duree de rampe est inférieure à la durée à vitesse constante.
     """
@@ -74,23 +89,28 @@ class CalculRampe():
         return self.__a4
     
     def compute_coeffs_accel(self):
-        """Calcul les coefficients du polynôme de degré 7 qui modélise la levée pendant les rampes d'ouverture et de fermeture. Cela revient résoudre un système d'équations linéraires d'ordre 4.
-
-        Raises:
-            ValueError: Si la matrice du système d'équation n'est pas inversible, il n'est pas possible de trouver des solutions. 
+        """Calcule les coefficients du polynôme de degré 7 qui modélise la levée pendant la phase d'accélération des rampes d'ouverture et de fermeture. 
+        
+        Ce calcul revient à résoudre un système d'équations linéaires d'ordre 4. Cette résolution est ici présentée de façon matricielle.
 
         Returns:
             numpy.ndarray: Coefficients du polynôme de degré 7 modélisant la levée.
+        
+        Raises:
+            ValueError: Si la matrice du système d'équation n'est pas inversible, il n'est pas possible de trouver des solutions. 
         """
         if npl.det(self.matrix_pb()) < 1e-5 :
             raise ValueError("La matrice du problème est difficilement inversible. Il se peut que les solutions du problème n'existent pas ou soient imprécises")
         return npl.inv(self.matrix_pb())@self.bcs_pb()
 
     def j(self, ac: float) -> float:
-        """Calcul du Jerk spécifiquement pour la phase de rampe d'ouverture.
+        """Calcul du jerk spécifiquement pour la phase de rampe.
 
         Args:
-            ac (numpy.ndarray): Angles pour lesquels sont calculées les Jerks
+            ac (numpy.ndarray): Angle de rotation de la came.
+        
+        Returns:
+            float: Jerk de la soupape (en m/rad^3).
         """
         def j_ar(x):
             xm = np.atleast_1d(np.ma.array(np.array(x), mask = ((x < 0) | (x >= self.dac_r - self.dac_vc))))
@@ -105,10 +125,13 @@ class CalculRampe():
         return jerk.reshape(np.shape(ac))
 
     def a(self, ac: float) -> float:
-        """Calcul l'accélération spécifiquement pour la phase de rampe d'ouverture.
+        """Calcul de l'accélération spécifiquement pour la phase de rampe.
 
         Args:
-            ac (numpy.ndarray): Angles pour lesquels sont calculées les accélérations
+            ac (numpy.ndarray): Angle de rotation de la came.
+        
+        Returns:
+            float: Accélération de la soupape (en m/rad²).
         """
         def a_ar(x):
             xm = np.atleast_1d(np.ma.array(np.array(x), mask = ((x < 0) | (x >= self.dac_r - self.dac_vc))))
@@ -123,6 +146,16 @@ class CalculRampe():
         return accel.reshape(np.shape(ac))
             
     def v(self, ac: float) -> float:
+        """Calcul de la vitesse spécifiquement pour la phase de rampe.
+
+        La loi de vitesse est divisée en 2 phases, une accélération qui suit la loi donné par le polynôme et une phase à vitesse constante. deux fonctions sont définies pour pouvoir les calculer.
+        
+        Args:
+            ac (numpy.ndarray): Angle de rotation de la came.
+        
+        Returns:
+            float: Vitesse de la soupape (en m/rad).
+        """
         def v_ar(x):
             xm = np.atleast_1d(np.ma.array(np.array(x), mask = ((x < 0) | (x >= self.dac_r - self.dac_vc))))
             vitesse = 7*self.a7*xm**6 + 6*self.a6*xm**5 + 5*self.a5*xm**4 + 4*self.a4*xm**3
@@ -142,22 +175,29 @@ class CalculRampe():
         return vitesse.reshape(np.shape(ac))
 
     def l(self, ac: float) -> float:
+        """Calcul de la levée spécifiquement pour la phase de rampe.
+
+        La loi de levée est divisée en 2 phases, une accélération qui suit la loi donné par le polynôme et une phase affine. Deux fonctions distinctes sont donc définies pour pouvoir les calculer.
+        
+        Args:
+            ac (numpy.ndarray): Angle de rotation de la came.
+        
+        Returns:
+            float: Levée de la soupape (en m).
+        """
         def l_ar(x):
             xm = np.atleast_1d(np.ma.array(np.array(x), mask = ((x < 0) | (x >= self.dac_r - self.dac_vc))))
             levee = self.a7*xm**7 + self.a6*xm**6 + self.a5*xm**5 + self.a4*xm**4
             levee[xm.mask] = 0
             return levee.reshape(np.shape(x))
-        
         def l_vcr(x):
             xm = np.atleast_1d(np.ma.array(np.array(ac), mask = ((x < self.dac_r - self.dac_vc) | (x > self.dac_r))))
             levee = self.lr + self.vr*(xm - self.dac_r)
             levee[xm.mask] = 0
             return levee.reshape(np.shape(x))
-        
         acm = np.atleast_1d(np.ma.array(np.array(ac), mask = ((ac < 0) | (ac > self.dac_r))))
         levee = l_ar(acm) + l_vcr(acm)
         levee[acm.mask] = np.nan
-
         return levee.reshape(np.shape(ac))
     
     def compute_levee_accel(self) -> float:
@@ -167,6 +207,13 @@ class CalculRampe():
         return levee_accel
     
     def matrix_pb(self) -> np.ndarray:
+        """Crée la matrice représentant le système linéaire représentant le problème.
+
+        La matrice réduite est de dimension 4x4.
+
+        Returns:
+            numpy.ndarray: La matrice 4x4 représentative du problème.
+        """
         return np.array([
             [self.dac_apos**3, self.dac_apos**2, self.dac_apos, 1],
             [7*self.dac_apos**3, 6*self.dac_apos**2, 5*self.dac_apos, 4],
@@ -175,6 +222,13 @@ class CalculRampe():
         ])
     
     def bcs_pb(self) -> np.ndarray:
+        """Crée le vecteur représentant les conditions aux limites du problème.
+
+        Ce vecteur est un vecteur réduit aux coefficient qui ne sont pas nuls a priori.
+
+        Returns:
+            numpy.ndarray: Vecteur des conditions aux limites.
+        """
         return np.array([
             self.la/self.dac_apos**4, 
             self.vr/self.dac_apos**3,
@@ -184,9 +238,26 @@ class CalculRampe():
     
     @classmethod
     def from_dict(cls, d: dict):
+        """Crée une instance de la classe CalculRampe à partir d'un dictionnaire contenant les attributs de la classe. 
+        
+        Cette opération permet d'importer une classe CalculRampe qui aurait été stockée au format .json.
+
+        Args:
+            dict: Dictionnaire dont les clés sont les attributs de la classe.
+        
+        Returns:
+            CalculRampe: Une instance de la classe CalculRampe.
+        """
         return cls(**d)
     
     def to_dict(self) -> dict:
+        """Convertit les attributs de la classe en un dicitionnaire. 
+        
+        Cette opération est nécessaire pour pouvoir stocker les données au format .json.
+
+        Returns:
+            dict: Dictionnaire dont les clés sont les attributs de la classe.
+        """
         return {
             "duree_rampe" : self.dac_r,
             "duree_vitesse_constante" : self.dac_vc,
@@ -194,9 +265,40 @@ class CalculRampe():
             "vitesse_rampe" : self.vr
         }
     
+
 class CalculRaccord():
+    """Utilitaire de calcul du raccord en accélération positive et limite de décélération à l'affolement.
+     
+    Cette classe fournit des fonctions permettant de calculer la phase de raccord entre l'accélération positive et la décélération à la limite de l'affolement. Ce raccord est créé par une courbe de Bézier à trois points de contrôle. Le premier point de contrôle est le point de fin d'accélération positive. Le second point de contrôle est le point au début de la phase de décélération à la limite de l'affolement. Le dernier point de contrôle est l'intersection des tangentes aux deux premiers points de contrôle.
+
+    Args:
+        duree_raccord (float): Durée du raccord, doit être positive.
+        accel_init (float): Accélération en fin de phase d'accélération positive.
+        jerk_init (float): Jerk en fin de phase d'accélération positive.
+        accel_final (float): Accélération en début de phase de décélération à la limite de l'affolement.
+        jerk_final (float): Jerk en début de phase de décélération à la limite de l'affolement.
+
+    Attributes:
+        dac_raccord (float): Durée du raccord Duration of the connection, must be positive.
+        ai (float): Accélération en fin de phase d'accélération positive.
+        ji (float): Jerk en fin de phase d'accélération positive.
+        af (float): Accélération en début de phase de décélération à la limite de l'affolement.
+        jf (float): Jerk en début de phase de décélération à la limite de l'affolement.
+        a_spl (scipy.interpolate.BSpline): Spline interpolant l'accélération.
+        v_spl (scipy.interpolate.BSpline): Spline interpolant la vitesse.
+        l_spl (scipy.interpolate.BSpline): Spline interpolant la levée.
+        j_spl (scipy.interpolate.BSpline): Spline interpolant le jerk.
+
+    Methods:
+        update(): Updates the attributes representing the interpolations of acceleration, velocity, lift, and jerk.
+        compute_accel_spl() -> scipy.interpolate.BSpline: Interpole l'accélération par un BSpline.
+        get_bezier_parameters(X, Y, degree=3): Calcule la relation entre l'abscisse curviligne de la courbe de bézier et les coordonnées du point.
+        bezier_curve(points: list, nTimes: int=50) -> tuple[np.ndarray, np.ndarray]: Retourne la courbe de Bézier passant par les points de contrôle.
+
+    Raises:
+        ValueError: Si la durée du raccord n'est pas strictement positive.
+    """
     def __init__(self, duree_raccord, accel_init, jerk_init, accel_final, jerk_final):
-        
         if duree_raccord<=0:
             raise ValueError("Le raccord a une durée négative ou nulle ce qui n'est pas permis.")
 
@@ -240,49 +342,97 @@ class CalculRaccord():
         return self.__j_spl
     
     @dac_raccord.setter
-    def dac_raccord(self, new_dac):
+    def dac_raccord(self, new_dac: float) -> None:
+        """Met à jour la durée du raccord.
+
+        Ce "setter" s'assure en même temps que la dure du raccord est strictement positive. Et recalcule la spline représentant le raccord.
+
+        Args:
+            new_dac: Nouvelle durée du raccord.
+
+        Raises:
+            ValueError: Si la nouvelle durée n'est pas strictement positive, la durée est considérée comme non valide.
+        """
         if new_dac <= 0:
             raise ValueError("Le raccord a une durée négative ou nulle ce qui n'est pas permis.")
         self.__dac_raccord = new_dac
         self.a_spl = self.compute_accel_spl()
     @ai.setter
-    def ai(self, new_ai):
+    def ai(self, new_ai: float) -> None:
+        """Met à jour l'ordonnée (accélération) du premier point de contrôle.
+
+        Args:
+            new_af: Nouvelle valeur d'accélération.
+        """
         self.__ai = new_ai
     @ji.setter
-    def ji(self, new_ji):
+    def ji(self, new_ji: float) -> None:
+        """Met à jour la dérivée du premier point de contrôle.
+        
+        Ce "setter" s'assure que cette dérivée n'est pas égale à la dérivée du deuxième point de contrôle. Si c'était le cas, les deux tangentes seraient parallèles et aucune intersection ne pourrait donc être trouvée.
+
+        Args:
+            new_jf: Nouvelle valeur de la dérivée.
+
+        Raises:
+            ZeroDivisionError: Si new_ji = jf. Cela signifierait que les tangentes sont parallèle et que aucune intersection n'existe.
+        """
         if new_ji == self.jf :
             raise ZeroDivisionError("Les tangentes sont parallèles. Aucune solution ne peut être trouvée pour le troisième point.")
         else :
             self.__ji = new_ji
     @af.setter
-    def af(self, new_af):
+    def af(self, new_af: float) -> None:
+        """Met à jour l'ordonnée (accélération) du deuxième point de contrôle.
+
+        Args:
+            new_af: Nouvelle valeur d'accélération.
+        """
         self.__af = new_af
     @jf.setter
-    def jf(self, new_jf):
+    def jf(self, new_jf: float) -> None:
+        """Met à jour la dérivée du deuxième point de contrôle.
+        
+        Ce "setter" s'assure que cette dérivée n'est pas égale à la dérivée du premier point de contrôle. Si c'était le cas, les deux tangentes seraient parallèles et aucune intersection ne pourrait donc être trouvée.
+
+        Args:
+            new_jf: Nouvelle valeur de la dérivée.
+
+        Raises:
+            ZeroDivisionError: Si new_jf = ji. Cela signifierait que les tangentes sont parallèle et que aucune intersection n'existe.
+        """
         if new_jf == self.ji :
             raise ZeroDivisionError("Les tangentes sont parallèles. Aucune solution ne peut être trouvée pour le troisième point.")
         else :
             self.__jf = new_jf
    
-    def update(self):
+    def update(self) -> None:
+        """Met à jour les attributs représentant les interpolations de l'accélération, de la vitesse, de la levée et du jerk.
+
+        Returns:
+            None
+        """
         self.__a_spl = self.compute_accel_spl()
         self.__v_spl = self.a_spl.antiderivative(nu=1)
         self.__l_spl = self.a_spl.antiderivative(nu=2)
         self.__j_spl = self.a_spl.derivative(nu=1)
 
-    def compute_accel_spl(self):
-        ac_int, a_int = self.compute_bezier_3rd_pts(0, self.ai, self.ji, -self.dac_raccord, self.af, self.jf)
+    def compute_accel_spl(self) -> scitp.BSpline:
+        """Interpole l'accélération en se basant sur la courbe de Bézier précédemment calculée.
 
+        Returns:
+            scipy.interpolate.BSpline: A B-spline représentant l'accélération sur la phase de raccord.
+        """
+        ac_int, a_int = self.compute_bezier_3rd_pts(0, self.ai, self.ji, -self.dac_raccord, self.af, self.jf)
         knots = np.array([[0, self.ai],[ac_int, a_int],[-self.dac_raccord, self.af]]) 
         ac_evalpts, accel_evalpts = self.bezier_curve(knots)
         ind_sort = np.argsort(ac_evalpts)
         ac_evalpts = np.take(ac_evalpts, ind_sort)
         accel_evalpts = np.take(accel_evalpts, ind_sort)
         knot_vector,coefficients,degree = scitp.splrep(ac_evalpts, accel_evalpts, k=2)
-        
         return scitp.BSpline(knot_vector, coefficients, degree, extrapolate=True)
 
-    def get_bezier_parameters(self, X, Y, degree=3):
+    def get_bezier_parameters(self, X: list, Y: list, degree: int=3) -> list:
         """ Least square qbezier fit using penrose pseudoinverse.
 
         Parameters:
@@ -321,13 +471,13 @@ class CalculRaccord():
         T = np.linspace(0, 1, len(X))
         M = bmatrix(T)
         points = np.array(list(zip(X, Y)))
-        
+
         final = least_square_fit(points, M).tolist()
         final[0] = [X[0], Y[0]]
-        final[len(final)-1] = [X[len(X)-1], Y[len(Y)-1]]
+        final[len(final)-1] = [X[-1], Y[-1]]
         return final
 
-    def bezier_curve(self, points, nTimes=50):
+    def bezier_curve(self, points: list, nTimes: int= 50) -> tuple[np.ndarray, np.ndarray]:
         """
         Given a set of control points, return the
         bezier curve defined by the control points.
@@ -353,20 +503,23 @@ class CalculRaccord():
 
         return xvals, yvals
 
-    def compute_bezier_3rd_pts(self, x1, y1, j1, x2, y2, j2):
-        """This fonction aims to compute the coordinates of the 3rd point in order to link them with a Bézier Curve. 
+    def compute_bezier_3rd_pts(self, x1: float, y1: float, j1: float, x2: float, y2: float, j2: float) -> tuple[float, float]:
+        """Calcule les coordonées du 3ème point de controle de la courbe de Bézier. 
+        
+        Cette fonction à pour objectif de calculer le troisième point de contrôle de la courbe de Bézier à partir des coordonnées de 2 points et de la valeur des dérivées en ces points. 
+        Le troisième point se trouve en fait à l'intersection des tangentes aux deux autres points.
 
         Args:
-            x1 (float): x-coordinate of the 1st point
-            y1 (float): y-coordinate of the 1st point
-            j1 (float): dy/dx at the 1st point
-            x2 (float): x-coordinate of the 2nd point
-            y2 (float): y-coordinate of the 2nd point
-            j2 (float): dy/dx at the 2nd point
+            x1 (float): Abscisse du premier point.
+            y1 (float): Ordonnée du premier point.
+            j1 (float): Dérivée de la courbe au premier point.
+            x2 (float): Abscisse du second point.
+            y2 (float): Ordonnée du second point.
+            j2 (float):  Dérivée de la courbe au second point.
 
         Returns:
-            float: x-coordinate of the 3rd point
-            float: y-coordinate of the 3rd point
+            float: Abscisse du troisième point.
+            float: Ordonnée du troisième point.
         """
         if j1 == j2 :
             raise ZeroDivisionError("Les tangentes sont parallèles. Aucune solution ne peut être trouvée pour le troisième point.")
@@ -374,9 +527,16 @@ class CalculRaccord():
         xnew = (j2*x2 - j1*x1 - (y2 - y1))/(j2-j1) 
         return xnew, j1*(xnew-x1) + y1
 
-    def bernstein_poly(self, i, n, t):
-        """
-        The Bernstein polynomial of n, i as a function of t
+    def bernstein_poly(self, i: int, n: int, t: float) -> float:
+        """Évalue en t le ième membre du polynôme de Bernstein d'ordre n.
+
+        Args :
+            i (int): Indice du membre du polynôme de Bernstein à évaluer.
+            n (int): Ordre du polynôme de Bernstein.
+            t (float): Valeur en laquelle évaluer le polynôme.
+        
+        Returns:
+            float: Valeur en t du ième membre du polynôme de Bernstein d'ordre n.
         """
         return scs.comb(n, i) * ( t**(n-i) ) * (1 - t)**i
 

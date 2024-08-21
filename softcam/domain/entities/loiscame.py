@@ -1,7 +1,13 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 import dataclasses
 from typing import Callable
+
 import numpy as np
 import scipy.interpolate as scitp
+
 from domain.services.calculsloiscame import CalculRampe
 
 @dataclasses.dataclass

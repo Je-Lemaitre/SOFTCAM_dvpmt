@@ -1,5 +1,4 @@
 import dataclasses
-import numpy as np
 
 @dataclasses.dataclass
 class Patin:

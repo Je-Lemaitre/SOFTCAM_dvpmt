@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 from domain.entities.soupape import Soupape, Poussoir
 from application.interfaces.controller_interface import ControllerInterface
 

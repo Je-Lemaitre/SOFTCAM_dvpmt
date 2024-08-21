@@ -1,10 +1,28 @@
-# infrastructure/persistence/json_repository.py
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 import pandas as pd
 import openpyxl
+
 from domain.entities.etude import Etude
 from application.interfaces.repository_interface import RepositoryInterface
 
 class ExcelRepository(RepositoryInterface):
+    """Attention !!! Cette classe n'est pas du tout aboutie. Il n'est actuellement pas possible de convertir une étude en un fichier Excel. Ceci contstitue un manque important. 
+    À terme, implémentation du repository permettant de charger une étude d'un fichier excel et de la sauvegarder en un fichier excel.
+
+    Args:
+        path (str): Le chemin d'accès au fichier excel.
+
+    Methods:
+        load_data() -> Etude:
+            Charge une étude à partir d'un fichier Excel et crée une instance de la classe Etude.
+        save_data(study: Etude):
+            Sauvegarde les données de l'étude chargée en un fichier excel. Cette fonction importante aux yeux de Frédéric n'est pas implémenté et donc pas fonctionnelle.
+        load_profile(profile_path: str):
+            Charge un profil de came à partir d'un fichier excel. Cette fonction ne peut pas être utilisée actuellement.
+    """
     def __init__(self, path: str):
         super(ExcelRepository, self).__init__(path)
 

@@ -1,10 +1,32 @@
-# infrastructure/persistence/json_repository.py
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
+import numpy as np
 import json
+
 from domain.entities.etude import Etude
 from application.interfaces.repository_interface import RepositoryInterface
-import numpy as np
+
 
 class JSONRepository(RepositoryInterface):
+    """Implémentation du repository permettant de charger une étude d'un fichier .json et de la sauvegarder en un fichier .json.
+
+    Args:
+        path (str): Le chemin absolu du fichier dans lequel est stockée l'étude.
+
+    Methods:
+        load_data() -> Etude:
+            Charge une étude à partir d'un fichier .json et créer une instance la classe Etude.
+        save_data(study: Etude):
+            Sauvegarde une instance de Etude en un fichier .json.
+        load_profile(profile_path: str):
+            Charge un profil de came d'un fichier .json. Cette fonction ne peut pas être utilisée actuellement.
+        convert(x):
+            Convertit les arrays de numpy en un format accepté par les fichier .json .
+        deconvert(x):
+            Repère les arrays de numpy stockés au format .json et les charges en tant que numpy.ndarray dans l'étude.
+    """
     def __init__(self, path: str):
         super(JSONRepository, self).__init__(path)
 
