@@ -1,0 +1,3 @@
+"""Le package "usecases" contient les "cas d'usage" de l'application. Un cas d'usage peut-être vu comme une demande de l'utilisateur. Cette demande est traduite par une action au niveau de l'interface utilisateur et il est nécessaire d'utiliser une partie de la logique mathématique et physique pour y répondre. C'est le code de ce package qui permet de savoir quelle logique est utilisée et comment. 
+Il est composée de plusieurs modules.
+"""

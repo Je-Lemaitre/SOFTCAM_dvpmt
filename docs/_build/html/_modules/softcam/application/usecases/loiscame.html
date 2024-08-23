@@ -1,287 +1,134 @@
-<!doctype html>
-<html class="no-js" lang="fr" data-content_root="../../../../">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Recherche" href="../../../../search.html" />
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>softcam.application.usecases.loiscame &mdash; Documentation softcam 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
 
-    <!-- Generated with Sphinx 8.0.2 and Furo 2024.08.06 -->
-        <title>softcam.application.usecases.loiscame - Documentation softcam 2.0</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?v=302659d7" />
-    
-    
-
-
-<style>
-  body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
   
-  }
-  @media not print {
-    body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-    }
-    @media (prefers-color-scheme: dark) {
-      body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-      }
-    }
-  }
-</style></head>
-  <body>
-    
-    <script>
-      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
-    </script>
-    
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=e8570148"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/translations.js?v=041d0952"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../../../search.html" /> 
+</head>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="svg-toc" viewBox="0 0 24 24">
-    <title>Contents</title>
-    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
-      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
-    </svg>
-  </symbol>
-  <symbol id="svg-menu" viewBox="0 0 24 24">
-    <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
-    <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </symbol>
-  <symbol id="svg-sun" viewBox="0 0 24 24">
-    <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-moon" viewBox="0 0 24 24">
-    <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-    </svg>
-  </symbol>
-  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
-    <title>Auto light/dark, in light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
-      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
-      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
-      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
-      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
-      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
-      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
-      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
-      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
-      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
-      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
-      <circle cx="14.5" cy="9.55" r="3.6"/>
-    </svg>
-  </symbol>
-  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
-    <title>Auto light/dark, in dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
-      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
-      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
-      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
-      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
-      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
-      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
-      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
-      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
-      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
-      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
-      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
-    </svg>
-  </symbol>
-  <symbol id="svg-pencil" viewBox="0 0 24 24">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
-      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-      <path d="M13.5 6.5l4 4" />
-      <path d="M20 21l2 -2l-2 -2" />
-      <path d="M17 17l-2 2l2 2" />
-    </svg>
-  </symbol>
-  <symbol id="svg-eye" viewBox="0 0 24 24">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-      <path
-        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
-      <path d="M20 21l2 -2l-2 -2" />
-      <path d="M17 17l-2 2l2 2" />
-    </svg>
-  </symbol>
-</svg>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
-
-<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
-
-
-
-<div class="page">
-  <header class="mobile-header">
-    <div class="header-left">
-      <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
-      </label>
-    </div>
-    <div class="header-center">
-      <a href="../../../../index.html"><div class="brand">Documentation softcam 2.0</div></a>
-    </div>
-    <div class="header-right">
-      <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
-          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
-          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
-          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
-        </button>
-      </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-      </label>
-    </div>
-  </header>
-  <aside class="sidebar-drawer">
-    <div class="sidebar-container">
-      
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../../index.html">
-  
-  
-  <span class="sidebar-brand-text">Documentation softcam 2.0</span>
-  
-</a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
-  <input class="sidebar-search" placeholder="Recherche" name="q" aria-label="Recherche">
-  <input type="hidden" name="check_keywords" value="yes">
-  <input type="hidden" name="area" value="default">
-</form>
-<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            softcam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../modules.html">softcam</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of softcam</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../softcam.html">softcam package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of softcam package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../softcam.application.html">softcam.application package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of softcam.application package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.application.interfaces.html">softcam.application.interfaces package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.application.usecases.html">softcam.application.usecases package</a></li>
-</ul>
-</li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../softcam.domain.html">softcam.domain package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of softcam.domain package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.domain.entities.html">softcam.domain.entities package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.domain.services.html">softcam.domain.services package</a></li>
-</ul>
-</li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../softcam.infrastructure.html">softcam.infrastructure package</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of softcam.infrastructure package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.infrastructure.controllers.html">softcam.infrastructure.controllers package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.infrastructure.repositories.html">softcam.infrastructure.repositories package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../softcam.infrastructure.views.html">softcam.infrastructure.views package</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">softcam</a></li>
 </ul>
 
-</div>
-</div>
-
-      </div>
-      
-    </div>
-  </aside>
-  <div class="main">
-    <div class="content">
-      <div class="article-container">
-        <a href="#" class="back-to-top muted-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
-          </svg>
-          <span>Back to top</span>
-        </a>
-        <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
-              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
-              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
-              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
-            </button>
-          </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-          </label>
         </div>
-        <article role="main" id="furo-main-content">
-          <h1>Code source de softcam.application.usecases.loiscame</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;c:/Users/stagiaire.be/Documents/SOFTCAM_dvpmt/softcam&quot;</span><span class="p">)</span>
+      </div>
+    </nav>
 
-<span class="kn">from</span> <span class="nn">domain.services.calculsloiscame</span> <span class="kn">import</span> <span class="n">CalculRampe</span><span class="p">,</span> <span class="n">CalculRaccord</span>
-<span class="kn">import</span> <span class="nn">domain.services.calculsdynamique</span> <span class="k">as</span> <span class="nn">cdyn</span>
-<span class="kn">from</span> <span class="nn">domain.entities.loiscame</span> <span class="kn">import</span> <span class="n">LoisPhaseRampe</span><span class="p">,</span> <span class="n">LoisPhaseAccel</span><span class="p">,</span> <span class="n">LoisPhaseRaccord</span><span class="p">,</span> <span class="n">LoisPhaseDecel</span><span class="p">,</span> <span class="n">LoisPhaseDecelV2</span><span class="p">,</span> <span class="n">DemiLois</span><span class="p">,</span> <span class="n">LoisCame</span>
-<span class="kn">from</span> <span class="nn">domain.entities.assemblage</span> <span class="kn">import</span> <span class="n">Assemblage</span><span class="p">,</span> <span class="n">AssemblageLinguet</span><span class="p">,</span> <span class="n">AssemblageDirecte</span>
-<span class="kn">from</span> <span class="nn">application.interfaces.controller_interface</span> <span class="kn">import</span> <span class="n">ControllerInterface</span>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">softcam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Code du module</a></li>
+      <li class="breadcrumb-item active">softcam.application.usecases.loiscame</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de softcam.application.usecases.loiscame</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))))</span>
+
 <span class="kn">from</span> <span class="nn">geomdl</span> <span class="kn">import</span> <span class="n">NURBS</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">scitg</span>
 <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">scitp</span>
 <span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">sco</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="kn">import</span> <span class="nn">domain.services.unitees</span> <span class="k">as</span> <span class="nn">unit</span>
+<span class="kn">import</span> <span class="nn">domain.services.calculsdynamique</span> <span class="k">as</span> <span class="nn">cdyn</span>
+<span class="kn">from</span> <span class="nn">domain.services.calculsloiscame</span> <span class="kn">import</span> <span class="n">CalculRampe</span><span class="p">,</span> <span class="n">CalculRaccord</span>
+<span class="kn">from</span> <span class="nn">domain.entities.loiscame</span> <span class="kn">import</span> <span class="n">LoisPhaseRampe</span><span class="p">,</span> <span class="n">LoisPhaseAccel</span><span class="p">,</span> <span class="n">LoisPhaseRaccord</span><span class="p">,</span> <span class="n">LoisPhaseDecel</span><span class="p">,</span> <span class="n">LoisPhaseDecelV2</span><span class="p">,</span> <span class="n">DemiLois</span><span class="p">,</span> <span class="n">LoisCame</span>
+<span class="kn">from</span> <span class="nn">domain.entities.assemblage</span> <span class="kn">import</span> <span class="n">Assemblage</span><span class="p">,</span> <span class="n">AssemblageLinguet</span><span class="p">,</span> <span class="n">AssemblageDirecte</span>
+<span class="kn">from</span> <span class="nn">application.interfaces.controller_interface</span> <span class="kn">import</span> <span class="n">ControllerInterface</span>
 
 <div class="viewcode-block" id="OptimiseLoisRampe">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisRampe">[docs]</a>
 <span class="k">class</span> <span class="nc">OptimiseLoisRampe</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Crée une instance de LoisPhaseRampe, qui représente la phase de rampe, en fonction des squelettes renseignés.</span>
+
+<span class="sd">    Dans les faits, aucun ajustement n&#39;est réalisé sur la phase de rampe. Le nom de cette classe est donc mal choisi.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        duree_rampe (float): Durée totale de la rampe.</span>
+<span class="sd">        duree_vitesse_constante (float): Durée de la phase à vitesse constante.</span>
+<span class="sd">        vitesse_rampe (float): Vitesse durant la phase à vitesse constante.</span>
+<span class="sd">        levee_rampe (float): Levée en fin de rampe.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        vitesse_squel (np.ndarray): Squelette de vitesse.</span>
+<span class="sd">        levee_squel (np.ndarray): Squelette de levée.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__() -&gt; LoisPhaseRampe:</span>
+<span class="sd">            Crée une instance de LoisPhaseRampe correspondant aux squelettes renseignés.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LoisPhaseRampe: Une instance de LoisPhaseRampe représentant les lois de distributions pour la phase de rampe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vitesse_squel</span><span class="p">,</span> <span class="n">levee_squel</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">duree_rampe</span> <span class="o">=</span> <span class="n">vitesse_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">vitesse_squel</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">duree_vitesse_constante</span> <span class="o">=</span> <span class="n">vitesse_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">vitesse_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vitesse_rampe</span> <span class="o">=</span> <span class="n">vitesse_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">levee_rampe</span> <span class="o">=</span> <span class="n">levee_squel</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="OptimiseLoisRampe.__call__">
+<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisRampe.__call__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisPhaseRampe</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée une instance de LoisPhaseRampe pour les squelettes renseignés.</span>
+<span class="sd">        </span>
+<span class="sd">        Cette méthode utilise les squelettes de vitesse et d&#39;acélération pour créer d&#39;abord une instance de CalculRampe puis une instance de LoisPhaseRampe. La rampe est plutôt simple à modéliser, une phase définie par un polynôme de degré 7 et une phase à vitesse constante. Cette rampe est fixe et ne subit pas d&#39;optimisation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LoisPhaseRampe: Une instance de LoisPhaseRampe représentant la phase de rampe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">calcul_rampe</span> <span class="o">=</span> <span class="n">CalculRampe</span><span class="p">(</span>
             <span class="n">duree_rampe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">duree_rampe</span><span class="p">,</span>
             <span class="n">duree_vitesse_constante</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">duree_vitesse_constante</span><span class="p">,</span>
@@ -296,19 +143,55 @@
             <span class="n">l_rampe</span> <span class="o">=</span> <span class="n">calcul_rampe</span><span class="o">.</span><span class="n">l</span><span class="p">,</span>
             <span class="n">j_rampe</span> <span class="o">=</span> <span class="n">calcul_rampe</span><span class="o">.</span><span class="n">j</span>
         <span class="p">)</span></div>
+</div>
 
 
 <div class="viewcode-block" id="OptimiseLoisAccel">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisAccel">[docs]</a>
 <span class="k">class</span> <span class="nc">OptimiseLoisAccel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Utilitaire permettant de créer la loi d&#39;accélération positive en fonction de l&#39;accélération maximale et du squelette.</span>
+<span class="sd">    </span>
+<span class="sd">    Cette classe est un utilitaire qui permet de créer la phase d&#39;accélération positive en fonction de l&#39;accélération maximale. Son nom est sûrement mal choisi car aucune &quot;optimisation&quot; n&#39;est réalisée dans cette classe. Néanmoins, elle fut appelée ainsi car elle est utilisée par la classe CreeDemiLois pour réaliser l&#39;ajustement des demi-lois.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        accel_squel (np.ndarray): Squelette d&#39;accélération.</span>
+<span class="sd">        vitesse_squel (np.ndarray): Squelette de vitesse.</span>
+<span class="sd">        levee_squel (np.ndarray): Squelette de levée.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        duree_accel (float): Durée de la phase d&#39;accélération positive.</span>
+<span class="sd">        vitesse_rampe (float): Vitesse en fin de rampe.</span>
+<span class="sd">        levee_rampe (float): Levée en fin de rampe.</span>
+<span class="sd">        accel_squel (np.ndarray): Squelette d&#39;accélération.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__(accelmax: float) -&gt; LoisPhaseAccel:</span>
+<span class="sd">            Crée une instance de LoisPhaseAccel correspondant à l&#39;accélération maximale renseignée.</span>
+<span class="sd">        compute_a_spl(ctrlpts: np.ndarray, poids: np.ndarray, degree: int=3, delta: float=1e-4) -&gt; scitp.BSpline:</span>
+<span class="sd">            Interpole l&#39;accélération de la phase d&#39;accélération positive par une B-Spline.</span>
+<span class="sd">        compute_ctrlpts(accelmax: float=None) -&gt; tuple[np.ndarray, np.ndarray]:</span>
+<span class="sd">            Calcule les points de contrôle.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LoisPhaseAccel: Une instance de LoisPhaseAccel répsentant la phase d&#39;accélération positive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accel_squel</span><span class="p">,</span> <span class="n">vitesse_squel</span><span class="p">,</span> <span class="n">levee_squel</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">duree_accel</span> <span class="o">=</span> <span class="n">accel_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vitesse_rampe</span> <span class="o">=</span> <span class="n">vitesse_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">levee_rampe</span> <span class="o">=</span> <span class="n">levee_squel</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">accel_squel</span> <span class="o">=</span> <span class="n">accel_squel</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisPhaseAccel</span><span class="p">:</span>
-        
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisPhaseAccel</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée une instance de LoisPhaseAccel qui corresponde à l&#39;accélération maximale renseignée. </span>
+<span class="sd">    </span>
+<span class="sd">        Cette méthode crée d&#39;abord des points de contrôle avec des poids associés. Ces points de contrôle sont ensuite interpolés par un spline de type NURBS.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            accelmax (float): Accélération maximale pour laquelle est calculée la phase d&#39;accélération positive.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LoisPhaseAccel: Instance de LoisPhaseAccel représentant la phase d&#39;accélération positive.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ctrlpts</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ctrlpts</span><span class="p">(</span><span class="n">accelmax</span><span class="p">)</span>
         <span class="n">a_spl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_a_spl</span><span class="p">(</span><span class="n">ctrlpts</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         
@@ -318,11 +201,23 @@
             <span class="n">levee_rampe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">levee_rampe</span><span class="p">,</span>
             <span class="n">a_spl</span> <span class="o">=</span> <span class="n">a_spl</span>
         <span class="p">)</span>
-       
+    
 <div class="viewcode-block" id="OptimiseLoisAccel.compute_a_spl">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisAccel.compute_a_spl">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_a_spl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrlpts</span><span class="p">,</span> <span class="n">poids</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scitp</span><span class="o">.</span><span class="n">BSpline</span><span class="p">:</span>
-        
+    <span class="k">def</span> <span class="nf">compute_a_spl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrlpts</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">poids</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">degree</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span> <span class="mf">1e-4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scitp</span><span class="o">.</span><span class="n">BSpline</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée la spline représentant l&#39;accélération de la phase d&#39;accélération positive.</span>
+
+<span class="sd">        Cette méthode passe par l&#39;utilisation de NURBS qui sont un type spécifique de splines permettant de définir un poids. Un module spécifique a été utilisé pour calculer ces NURBS. Afin de se ramener à une spline du module scipy.interpolate, la spline de type NURBS est ensuite interpolé par une B-Spline. En effet, d&#39;une part les scitp.BSpline sont plus simples à utilisées et, d&#39;autre part, cela permet de créer une certaine cohérence dans le logiciel.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ctrlpts (np.ndarray): Points de contrôle de la spline de type NURBS.</span>
+<span class="sd">            poids (np.ndarray): Poids associés aux points de contrôle.</span>
+<span class="sd">            degree (int): Degré de la spline (3 par défaut).</span>
+<span class="sd">            delta (float): Précision sur la spline (1e-4 par défaut). Attention si la précision est trop grande (i.e. delta trop petit) le temps de calcul deviendra très long.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            scitp.BSpline: Accélération pour la phase d&#39;accélération positive. Cette accélération est interpolée par une B-Spline.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">curve</span> <span class="o">=</span> <span class="n">NURBS</span><span class="o">.</span><span class="n">Curve</span><span class="p">()</span>
         <span class="c1"># Set degree of splines</span>
         <span class="n">curve</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="n">degree</span>
@@ -340,7 +235,20 @@
     
 <div class="viewcode-block" id="OptimiseLoisAccel.compute_ctrlpts">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisAccel.compute_ctrlpts">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_ctrlpts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="p">:</span>
+    <span class="k">def</span> <span class="nf">compute_ctrlpts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule les points de contrôle qui seront interpolés par la NURBS.</span>
+
+<span class="sd">        Cette méthode calcule les points de contrôle de la spline et les poids associés pour pourvoir utiliser un spline de type NURBS. Les points de contrôle sont principalement ceux définis par le squelette d&#39;accélération. Les deux point d&#39;acclération non nulle du squelette sont ajustés pour correspondre à l&#39;accélération maximale. Des points de contrôle sont ajoutés contrôler la valeur de la dérivée de la lois au point de levée maximale et en fin de phase d&#39;accélération positive. La dérivée en fin de phase d&#39;accélération positive est la pente de la dernière branche du squelette d&#39;accélération pour cette phase.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            accelmax (float, optional): L&#39;accélération maximale. </span>
+<span class="sd">                                        Si aucune accélération n&#39;est renseignée, celle-ci est calculée suivant le squelette initial.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[np.ndarray, np.ndarray]: A tuple containing:</span>
+<span class="sd">                - ctrlpts (np.ndarray): Array contenant les points de contrôle.</span>
+<span class="sd">                - weights (np.ndarray): Poids associés au points de contrôle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">accelmax</span> <span class="ow">is</span> <span class="kc">None</span> <span class="p">:</span>
             <span class="n">accelmax</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">accel_squel</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">accel_squel</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span> 
         
@@ -365,6 +273,41 @@
 <div class="viewcode-block" id="OptimiseLoisDecel">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisDecel">[docs]</a>
 <span class="k">class</span> <span class="nc">OptimiseLoisDecel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Utilitaire permettant de créer la loi de décélération à la limite de l&#39;affolement en fonction du régime d&#39;affolement.</span>
+
+<span class="sd">    Cette classe est un utilitaire qui permet de créer la phase de décélération à la limite de l&#39;affolement en fonction du régime d&#39;affolement. Son nom est sûrement mal choisi car aucune &quot;optimisation&quot; n&#39;est réalisée dans cette classe. Néanmoins elle fut appelée ainsi car elle est utilisée par la classe CreeDemiLois pour réaliser l&#39;ajustement des demi-lois.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        assemblage (AssemblageLinguet): L&#39;assemblage étudié.</span>
+<span class="sd">        levee_squel (np.ndarray): Squelette de levée.</span>
+<span class="sd">        raccord_angle (float): Angle de rotation de la came pour lequel le raccord rejoint la décélération à la limite de l&#39;affolement.</span>
+<span class="sd">        pas_angulaire_itg (float): Pas angulaire d&#39;intégration de l&#39;équation différentielle (Par défault ce pas est de 0.1 degrées). Ce pas est exprimé en radians.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        m1 (float): Masse de l&#39;ensemble cinématique lié à la soupape.</span>
+<span class="sd">        j2 (float): Inertie du levier.</span>
+<span class="sd">        k (float): Raideur du ressort.</span>
+<span class="sd">        dr (float): Précharge / Raideur du ressort = Différence entre la longueur à vide et la longueur à levée et jeu nul.</span>
+<span class="sd">        mu_ps (float): Coefficient de frottement dynamique entre la soupape et son patin.</span>
+<span class="sd">        l_ling (float): Longueur du levier. De son centre de rotation au centre de rotation du patin côté soupape.</span>
+<span class="sd">        r_ps (float): Rayon de courbure du patin côté soupape.</span>
+<span class="sd">        z_l (float): Coordonnée selon z1 du centre de rotation du linguet dans le repère (O, x, y1, z1).</span>
+<span class="sd">        leveemax (float): Levée maximale souhaitée pour un jeu nul.</span>
+<span class="sd">        duree_decel (float): Durée de la phase de décélération à la limite de l&#39;affolement.</span>
+<span class="sd">        ac_evalpts (np.ndarray): Angles de rotation de la came pour lesquels sont calculés la décélération.</span>
+<span class="sd">        betamax (float): Angle d&#39;inclinaison du linguet à la levée maximale.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__(regime_affolement: float) -&gt; LoisPhaseDecel:</span>
+<span class="sd">            Crée la loi de décélération pour le regime d&#39;affolement renseigné.</span>
+<span class="sd">        compute_a_spl(acs: np.ndarray, decels: np.ndarray, degree=3) -&gt; scipy.interpolate.BSpline:</span>
+<span class="sd">            Interpole la phase de décélération à la limite de l&#39;affolement par une B-Spline.</span>
+<span class="sd">        compute_decel(regime_affolement: float) -&gt; np.ndarray:</span>
+<span class="sd">            Calcule la décélération à la limite de l&#39;affolement pour les angles de rotation de la came définis en attributs.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LoisPhaseDecel: Une instance de LoisPhaseDecel représentant la décélération à la limite de l&#39;affolement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">AssemblageLinguet</span><span class="p">,</span> <span class="n">levee_squel</span><span class="p">,</span> <span class="n">raccord_angle</span><span class="p">,</span> <span class="n">pas_angulaire_itg</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">unit</span><span class="o">.</span><span class="n">DEGREE_TO_RADIAN</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m1</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">soupape</span><span class="o">.</span><span class="n">masse_coupelle</span> <span class="o">+</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">soupape</span><span class="o">.</span><span class="n">masse_soupape</span> <span class="o">+</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">ressort</span><span class="o">.</span><span class="n">masse</span><span class="o">/</span><span class="mi">3</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">j2</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">inertie</span>
@@ -385,8 +328,17 @@
             <span class="n">z_l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_l</span><span class="p">,</span> 
             <span class="n">r_ps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_ps</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regime_affolement</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisPhaseDecel</span><span class="p">:</span>
-        
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regime_affolement</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisPhaseDecel</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée une instance de LoisPhaseDecel pour le régime d&#39;affolement renseigné.</span>
+
+<span class="sd">        Cette méthode calcule d&#39;abord les décélérations aux angles de rotation de la came définis comme attributs. Ces angles de rotation dépendent du pas angulaire choisi. Les décélérations sont calculées en résolvant l&#39;équation du mouvement à l&#39;affolement avec pour conditions initiales la levée maximale et une vitesse nulle. La fonction odeint de scipy.integrate est utilisée pour intégrer l&#39;équation du mouvement. Cette fonction utilise une méthode d&#39;Adams-BDF pour la résolution de l&#39;équation différentielle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            regime_affolement (float): Régime d&#39;affolement pour lequel est caculé la décélération.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LoisPhaseDecel: Une instance de LoisPhaseDecel représentant la décélération à la limite de l&#39;affolement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">decel_evalpts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_decel</span><span class="p">(</span><span class="n">regime_affolement</span><span class="p">)</span>
 
         <span class="n">a_spl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_a_spl</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_evalpts</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">decel_evalpts</span><span class="p">),</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -399,14 +351,40 @@
     
 <div class="viewcode-block" id="OptimiseLoisDecel.compute_a_spl">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisDecel.compute_a_spl">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_a_spl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acs</span><span class="p">,</span> <span class="n">decels</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">compute_a_spl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">decels</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">degree</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scitp</span><span class="o">.</span><span class="n">BSpline</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Interpole la phase de décélération par une B-Spline.</span>
+
+<span class="sd">        Cette méthode utilise les résultats issus de la résolution de l&#39;équation du mouvement du système à l&#39;affolement.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            acs (np.ndarray): Angles de rotation de came des points à interpoler.</span>
+<span class="sd">            decels (np.ndarray): Décélération correspondantes aux angles des points à interpoler.</span>
+<span class="sd">            degree (int): Degré de la BSplien (3 par défaut, spline cubique).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            scitp.BSpline: A B-spline object representing the acceleration profile.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            None: This method does not raise exceptions but relies on the input arrays to be valid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">knot_vector</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="n">scitp</span><span class="o">.</span><span class="n">splrep</span><span class="p">(</span><span class="n">acs</span><span class="p">,</span> <span class="n">decels</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">degree</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">scitp</span><span class="o">.</span><span class="n">BSpline</span><span class="p">(</span><span class="n">knot_vector</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">extrapolate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
+
 <div class="viewcode-block" id="OptimiseLoisDecel.compute_decel">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisDecel.compute_decel">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_decel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regime_affolement</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">compute_decel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regime_affolement</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la décélération pour les angles définis en attributs.</span>
+<span class="sd">        </span>
+<span class="sd">        Cette méthode calcule la décélération pour les angles définis en attributs, ac_evalpts. Pour cela l&#39;équation du mouvement est résolue avec le point de levée maximale comme condition initiale (levée maximale, vitesse nulle).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            regime_affolement (float): Le régime d&#39;affolement pour lequel est calculé la décélération.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Un vecteur contenant les décélérations pour chacun des angles ac_evalpts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tps_evalpts</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_evalpts</span><span class="o">/</span><span class="n">regime_affolement</span>
         <span class="n">sol</span> <span class="o">=</span> <span class="n">scitg</span><span class="o">.</span><span class="n">odeint</span><span class="p">(</span>
             <span class="n">cdyn</span><span class="o">.</span><span class="n">dynamique_mvmt_affolement</span><span class="p">,</span>
@@ -426,6 +404,7 @@
 <div class="viewcode-block" id="OptimiseLoisDecelV2">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.OptimiseLoisDecelV2">[docs]</a>
 <span class="k">class</span> <span class="nc">OptimiseLoisDecelV2</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cette classe a pour objectif de proposer une autre stratégie l&#39;ajustement de la phase de décélération. Une stratégie qui ne soit pas basée sur le régime d&#39;affolement. Cette classe n&#39;a pas été implémentée par faute de temps. On pourrait imaginer une stratégie faisant varier l&#39;ouverture.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">AssemblageLinguet</span><span class="p">,</span> <span class="n">levee_squel</span><span class="p">,</span> <span class="n">pas_angulaire_itg</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">unit</span><span class="o">.</span><span class="n">DEGREE_TO_RADIAN</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m1</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">soupape</span><span class="o">.</span><span class="n">masse_coupelle</span> <span class="o">+</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">soupape</span><span class="o">.</span><span class="n">masse_soupape</span> <span class="o">+</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">ressort</span><span class="o">.</span><span class="n">masse</span><span class="o">/</span><span class="mi">3</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">j2</span> <span class="o">=</span> <span class="n">assemblage</span><span class="o">.</span><span class="n">levier</span><span class="o">.</span><span class="n">inertie</span>
@@ -499,18 +478,59 @@
 <div class="viewcode-block" id="CreeDemiLois">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CreeDemiLois">[docs]</a>
 <span class="k">class</span> <span class="nc">CreeDemiLois</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classe représentant le cas d&#39;usage &quot;Création des demis-lois de distribution&quot;. </span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        assemblage (Assemblage): L&#39;assemblage étudié et précédemment défini.</span>
+<span class="sd">        ouverture (bool): Indique si la demi-loi créée est une demi-loi d&#39;ouverture ou de fermeture. True = Ouverture, False = Fermeture.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        asmb (Assemblage): L&#39;assemblage étudié et précédemment défini.</span>
+<span class="sd">        ouverture (bool): Indique si la demi-loi créée est une demi-loi d&#39;ouverture ou de fermeture. True = Ouverture, False = Fermeture.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__(symetrie: bool, regime_affolement_init: float, accel_squelbrut: np.ndarray, vitesse_squelbrut: np.ndarray, levee_squelbrut: np.ndarray, raccord_anglebrut: float) -&gt; LoisCame: </span>
+<span class="sd">            Crée une demi-loi à partir des squelettes bruts.</span>
+<span class="sd">        optimise(accelmax_init: float, regime_affolement_init: float, opt_la: OptimiseLoisAccel, opt_ld: OptimiseLoisDecel, duree_raccord: float) -&gt; np.ndarray: </span>
+<span class="sd">            Ajuste les paramètres de la demi-loi pour assurer la continuité en levée et en vitesse.</span>
+<span class="sd">        opt_func(accelmax_waff: np.ndarray, opt_la : OptimiseLoisAccel, opt_ld : OptimiseLoisDecel, duree_raccord : float) -&gt; np.ndarray: </span>
+<span class="sd">            La fonction à optimiser.</span>
+<span class="sd">        compute_raccord(duree_raccord : float, loisaccel : LoisPhaseAccel, loisdecel : LoisPhaseDecel) -&gt; LoisPhaseRaccord:</span>
+<span class="sd">            Crée une instance de LoisPhaseRaccord qui relie les instance de LoisPhaseAccel et LoisPhaseDecel renseignées.</span>
+<span class="sd">        traite_squelettes(accel_squelbrut: np.ndarray, vitesse_squelbrut: np.ndarray, levee_squelbrut: np.ndarray, raccord_anglebrut: float, ouverture: bool= True) -&gt; tuple[np.ndarray, np.ndarray, np.ndarray, float]:</span>
+<span class="sd">            Traite les squelettes bruts pour les rendre exploitables par les fonctions d&#39;optimisation. </span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        DemiLois: Une instance de DemiLois.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">Assemblage</span><span class="p">,</span> <span class="n">ouverture</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">asmb</span> <span class="o">=</span> <span class="n">assemblage</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ouverture</span> <span class="o">=</span> <span class="n">ouverture</span>
     
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
-                <span class="n">regime_affolement_init</span><span class="p">,</span>
-                <span class="n">accel_squelbrut</span><span class="p">,</span>
-                <span class="n">vitesse_squelbrut</span><span class="p">,</span>
-                <span class="n">levee_squelbrut</span><span class="p">,</span>
-                <span class="n">raccord_anglebrut</span>
-                <span class="p">):</span>
+                <span class="n">regime_affolement_init</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                <span class="n">accel_squelbrut</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                <span class="n">vitesse_squelbrut</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                <span class="n">levee_squelbrut</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                <span class="n">raccord_anglebrut</span><span class="p">:</span> <span class="nb">float</span>
+                <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DemiLois</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée une instance de DemiLois à partir des squelettes bruts. </span>
 
+<span class="sd">        Cette méthode applique d&#39;abord un traitement aux squelettes bruts pour les rendre exploitables. Ensuite des utilitaires de création des phases de rampe, d&#39;accélération positive et de décélération à la limite de l&#39;affolement sont créée. Grâce à ces derniers, un raccord est créé et les paramètres des différentes phases sont ajustés afin d&#39;assurer la continuité en vitesse et en levée. Enfin la demi-loi finale est créée.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            regime_affolement_init (float): Régime d&#39;affolement pour l&#39;initialisation de l&#39;optimisation.</span>
+<span class="sd">            accel_squelbrut (np.ndarray): Squelette d&#39;accélération &quot;brut&quot;.</span>
+<span class="sd">            vitesse_squelbrut (np.ndarray): Squelette de vitesse &quot;brut&quot;.</span>
+<span class="sd">            levee_squelbrut (np.ndarray): Squelette de levée &quot;brut&quot;.</span>
+<span class="sd">            raccord_anglebrut (float): Angle de rotation de la came pour lequel le raccord rejoint la décélération à la limite de l&#39;affolement.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DemiLois: Une instance de DemiLois correspondant au squelette renseigné.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: Génère une erreur si l&#39;optimisation n&#39;a pas aboutie.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">accel_squel</span><span class="p">,</span> <span class="n">vitesse_squel</span><span class="p">,</span> <span class="n">levee_squel</span><span class="p">,</span> <span class="n">raccord_angle</span><span class="p">,</span> <span class="n">duree_raccord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">traite_squelettes</span><span class="p">(</span>
             <span class="n">accel_squelbrut</span><span class="p">,</span>
             <span class="n">vitesse_squelbrut</span><span class="p">,</span>
@@ -568,7 +588,24 @@
     
 <div class="viewcode-block" id="CreeDemiLois.optimise">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CreeDemiLois.optimise">[docs]</a>
-    <span class="k">def</span> <span class="nf">optimise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax_init</span><span class="p">,</span> <span class="n">regime_affolement_init</span><span class="p">,</span> <span class="n">opt_la</span><span class="p">,</span> <span class="n">opt_ld</span><span class="p">,</span> <span class="n">duree_raccord</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">optimise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax_init</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">regime_affolement_init</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">opt_la</span><span class="p">:</span> <span class="n">OptimiseLoisAccel</span><span class="p">,</span> <span class="n">opt_ld</span><span class="p">:</span> <span class="n">OptimiseLoisDecel</span><span class="p">,</span> <span class="n">duree_raccord</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ajuste l&#39;accélération maximale et le régime d&#39;affolement pour qu&#39;il y ait continuité en vitesse et en levée.</span>
+
+<span class="sd">        Pour réaliser cette optimisation, on utilise la fonction root de scipy.optimize. Cette fonction permet de trouver les racines d&#39;une fonction vectorielle. La fonction vectorielle dont nous cherchons les racines est celle qui retourne la valeur de la discontinuité en vitesse et la valeur de la discontinuité en levée.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            accelmax_init (float): Accélération maximale pour l&#39;initialisation de l&#39;ajustement.</span>
+<span class="sd">            regime_affolement_init (float): Régime d&#39;affolement pour l&#39;initialisation de l&#39;ajustement.</span>
+<span class="sd">            opt_la (OptimiseLoisAccel): Une instance de OptimiseLoisAccel qui permet de calculer l&#39;accélération positive en fonction de l&#39;accélération maximale.</span>
+<span class="sd">            opt_ld (OptimiseLoisDecel): Une instance de OptimiseLoisAccel qui permet de calculer la décélération à la limite de l&#39;affolement en fonction du régime d&#39;affolement.</span>
+<span class="sd">            duree_raccord (float): Durée de la phase de raccord.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Un vecteur contenant l&#39;accélération et le régime d&#39;affolement permettant de respecter les continuités.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: Retourne une erreur si l&#39;algorithme d&#39;optimisation ne converge pas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sol</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">root</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">opt_func</span><span class="p">,</span> 
             <span class="n">method</span><span class="o">=</span><span class="s2">&quot;hybr&quot;</span><span class="p">,</span> 
@@ -583,8 +620,20 @@
     
 <div class="viewcode-block" id="CreeDemiLois.opt_func">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CreeDemiLois.opt_func">[docs]</a>
-    <span class="k">def</span> <span class="nf">opt_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax_waff</span><span class="p">,</span> <span class="n">opt_la</span> <span class="p">:</span> <span class="n">OptimiseLoisAccel</span><span class="p">,</span> <span class="n">opt_ld</span> <span class="p">:</span> <span class="n">OptimiseLoisDecel</span><span class="p">,</span> <span class="n">duree_raccord</span> <span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        
+    <span class="k">def</span> <span class="nf">opt_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelmax_waff</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">opt_la</span> <span class="p">:</span> <span class="n">OptimiseLoisAccel</span><span class="p">,</span> <span class="n">opt_ld</span> <span class="p">:</span> <span class="n">OptimiseLoisDecel</span><span class="p">,</span> <span class="n">duree_raccord</span> <span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule les discontinuités en vitesse et levée à partir de l&#39;accélération maximale et du régime d&#39;affolement.</span>
+
+<span class="sd">        Cette fonction évalue les discontinuités en vitesse et levée à partir de l&#39;accélération maximale et du régime d&#39;affolement. C&#39;est la fonction dont on cherche les racines pour réaliser l&#39;ajustement.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            accelmax_waff (np.ndarray): Un vecteur contenant l&#39;accélération maximale et le régime d&#39;affolement.</span>
+<span class="sd">            opt_la (OptimiseLoisAccel): Une instance de OptimiseLoisAccel qui permet de calculer l&#39;accélération positive en fonction de l&#39;accélération maximale.</span>
+<span class="sd">            opt_ld (OptimiseLoisDecel): opt_ld (OptimiseLoisDecel): Une instance de OptimiseLoisAccel qui permet de calculer la décélération à la limite de l&#39;affolement en fonction du régime d&#39;affolement.</span>
+<span class="sd">            duree_raccord (float): Durée de la phase de raccord.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vecteur contenant les discontinuités en vitesse et en levée.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">amax</span><span class="p">,</span> <span class="n">wmot_aff</span> <span class="o">=</span> <span class="n">accelmax_waff</span>
         <span class="n">loisaccel</span> <span class="o">=</span> <span class="n">opt_la</span><span class="p">(</span><span class="n">amax</span><span class="p">)</span>
         <span class="n">loisdecel</span> <span class="o">=</span> <span class="n">opt_ld</span><span class="p">(</span><span class="n">wmot_aff</span><span class="p">)</span>
@@ -610,10 +659,22 @@
 
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">discontinuite_vitesse</span><span class="p">,</span> <span class="n">discontinuite_levee</span><span class="p">])</span></div>
 
-        
+
 <div class="viewcode-block" id="CreeDemiLois.compute_raccord">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CreeDemiLois.compute_raccord">[docs]</a>
     <span class="k">def</span> <span class="nf">compute_raccord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duree_raccord</span> <span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">loisaccel</span> <span class="p">:</span> <span class="n">LoisPhaseAccel</span><span class="p">,</span> <span class="n">loisdecel</span> <span class="p">:</span> <span class="n">LoisPhaseDecel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisPhaseRaccord</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée le raccord qui permet de relier les phases d&#39;accélération positive et de décélération à la limite de l&#39;affolement.</span>
+
+<span class="sd">        Cette fonction utilise l&#39;utilitaire de calcul du raccord implémenté dans domain.services.calculsloiscame.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            duree_raccord (float): Durée de la phase de raccord.</span>
+<span class="sd">            loisaccel (LoisPhaseAccel): Instance de LoisPhaseAccel représentant la phase d&#39;accélération positive.</span>
+<span class="sd">            loisdecel (LoisPhaseDecel): Instance de LoisPhaseDecel représentant la phase de décélération à la limite de l&#39;affolement.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LoisPhaseRaccord: Une instance de LoisPhaseRaccord représentant le raccord.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ai</span> <span class="o">=</span> <span class="n">loisdecel</span><span class="o">.</span><span class="n">a_spl</span><span class="p">(</span><span class="o">-</span><span class="n">loisdecel</span><span class="o">.</span><span class="n">duree_decel</span><span class="p">)</span>
         <span class="n">ji</span> <span class="o">=</span> <span class="n">loisdecel</span><span class="o">.</span><span class="n">j_spl</span><span class="p">(</span><span class="o">-</span><span class="n">loisdecel</span><span class="o">.</span><span class="n">duree_decel</span><span class="p">)</span>
         <span class="n">jf</span> <span class="o">=</span> <span class="n">loisaccel</span><span class="o">.</span><span class="n">j_spl</span><span class="p">(</span><span class="n">loisaccel</span><span class="o">.</span><span class="n">duree_accel</span><span class="p">)</span>
@@ -633,17 +694,32 @@
         <span class="p">)</span></div>
 
 
+
 <div class="viewcode-block" id="CreeDemiLois.traite_squelettes">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CreeDemiLois.traite_squelettes">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">traite_squelettes</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> 
-        <span class="n">accel_squelbrut</span><span class="p">,</span>
-        <span class="n">vitesse_squelbrut</span><span class="p">,</span>
-        <span class="n">levee_squelbrut</span><span class="p">,</span>
-        <span class="n">raccord_anglebrut</span><span class="p">,</span>
-        <span class="n">ouverture</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="p">):</span>
-        
+        <span class="n">accel_squelbrut</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">vitesse_squelbrut</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">levee_squelbrut</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">raccord_anglebrut</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">ouverture</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span> <span class="kc">True</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Traite les squelettes bruts pour les rendres exploitables par les fonction d&#39;ajustement et de création des phases.</span>
+
+<span class="sd">        Cette méthode de classe traite les squelettes bruts pour les rendre exploitable ensuite. Ce traitement consiste à diviser les squelettes suivant les phases qu&#39;ils représentent, à les translater les squelettes pour qu&#39;ils commencent à un angle nul et à calculer la durée du raccord. Si les squelettes renseignés sont des squelettes de fermeture, alors ces derniers sont également symétrisés. </span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            accel_squelbrut (np.ndarray): Squelette d&#39;accélération &quot;brut&quot;.</span>
+<span class="sd">            vitesse_squelbrut (np.ndarray): Squelette de vitesse &quot;brut&quot;.</span>
+<span class="sd">            levee_squelbrut (np.ndarray): Squelette de levée &quot;brut&quot;.</span>
+<span class="sd">            raccord_anglebrut (float): Angle de rotation de la came pour lequel le raccord rejoint la décélération à la limite de l&#39;affolement.</span>
+<span class="sd">            ouverture (bool): Indique si les squelettes bruts renseignés sont des squelettes d&#39;ouverture. True= Ouverture, False= Fermeture (default is True).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[np.ndarray, np.ndarray, np.ndarray, float]: Un tuple contenant les squelettes ajustés de l&#39;accélération, de la vitesse et de la levée ainsi que l&#39;angle de raccord et la durée du raccord.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">ouverture</span> <span class="p">:</span>
             <span class="n">accel_squel</span> <span class="o">=</span> <span class="n">accel_squelbrut</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">vitesse_squelbrut</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">accel_squelbrut</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span>
@@ -672,15 +748,54 @@
 <div class="viewcode-block" id="CreeLois">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CreeLois">[docs]</a>
 <span class="k">class</span> <span class="nc">CreeLois</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classe représentant le cas d&#39;usage &quot;Création des lois de distribution&quot;. </span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        assemblage (Assemblage): L&#39;assemblage étudié et précédemment défini.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__(symetrie: bool, regime_affolement_init: float, </span>
+<span class="sd">                accel_squelbrut_ouverture: np.ndarray, </span>
+<span class="sd">                accel_squelbrut_fermeture: np.ndarray, </span>
+<span class="sd">                vitesse_squelbrut_ouverture: np.ndarray, </span>
+<span class="sd">                vitesse_squelbrut_fermeture: np.ndarray, </span>
+<span class="sd">                levee_squelbrut_ouverture: np.ndarray, </span>
+<span class="sd">                levee_squelbrut_fermeture: np.ndarray, </span>
+<span class="sd">                raccord_anglebrut_ouverture: float, </span>
+<span class="sd">                raccord_anglebrut_fermeture: float) -&gt; LoisCame:</span>
+<span class="sd">            Crée les lois de distribution à partir des squelettes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LoisCame: Une instance de LoisCame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblage</span> <span class="p">:</span> <span class="n">Assemblage</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">asmb</span> <span class="o">=</span> <span class="n">assemblage</span>   
     
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symetrie</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">regime_affolement_init</span><span class="p">,</span>
-            <span class="n">accel_squelbrut_ouverture</span><span class="p">,</span> <span class="n">accel_squelbrut_fermeture</span><span class="p">,</span>
-            <span class="n">vitesse_squelbrut_ouverture</span><span class="p">,</span> <span class="n">vitesse_squelbrut_fermeture</span><span class="p">,</span> 
-            <span class="n">levee_squelbrut_ouverture</span><span class="p">,</span> <span class="n">levee_squelbrut_fermeture</span><span class="p">,</span>
-            <span class="n">raccord_anglebrut_ouverture</span><span class="p">,</span> <span class="n">raccord_anglebrut_fermeture</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">symetrie</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">regime_affolement_init</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+            <span class="n">accel_squelbrut_ouverture</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">accel_squelbrut_fermeture</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">vitesse_squelbrut_ouverture</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">vitesse_squelbrut_fermeture</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+            <span class="n">levee_squelbrut_ouverture</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">levee_squelbrut_fermeture</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+            <span class="n">raccord_anglebrut_ouverture</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">raccord_anglebrut_fermeture</span><span class="p">:</span> <span class="nb">float</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoisCame</span> <span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Crée une instance de l&#39;objet LoisCame à partir des squelette renseignés par l&#39;utilisateur. </span>
+<span class="sd">        </span>
+<span class="sd">        Pour créer une instance de LoisCame, la méthode crée d&#39;abord deux instances de DemiLois, une pour l&#39;ouverture et une pour la fermeture. Ces DemiLois sont ensuite assemblée pour former la lois finale. Si la loi est symétrique, une seule instance de DemiLois est créée, celle associée aux squelettes d&#39;ouverture. Les squelettes sont qualifiés de &quot;brut&quot;. En effet ce sont ceux renseignés par l&#39;utilisateur dans l&#39;interface graphique. Ils subiront ensuite un petit traitement pour pouvoir isoler les différentes phases (rampe, accélération positive, ...).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            symetrie (bool): Indique si la loi est symétrique ou non. True = Loi symétrique, False = Loi asymétrique.</span>
+<span class="sd">            regime_affolement_init (float): Régime d&#39;affolement pour l&#39;initialisation de l&#39;optimisation.</span>
+<span class="sd">            accel_squelbrut_ouverture (np.ndarray): Squelette d&#39;accélération &quot;brut&quot; pour l&#39;ouverture.</span>
+<span class="sd">            accel_squelbrut_fermeture (np.ndarray): Squelette d&#39;accélération &quot;brut&quot; pour la fermeture.</span>
+<span class="sd">            vitesse_squelbrut_ouverture (np.ndarray): Squelette de vitesse &quot;brut&quot; pour l&#39;ouverture.</span>
+<span class="sd">            vitesse_squelbrut_fermeture (np.ndarray): Squelette de vitesse &quot;brut&quot; pour la fermeture.</span>
+<span class="sd">            levee_squelbrut_ouverture (np.ndarray): Squelette de levée &quot;brut&quot; pour l&#39;ouverture.</span>
+<span class="sd">            levee_squelbrut_fermeture (np.ndarray): Squelette de levée &quot;brut&quot; pour la fermeture.</span>
+<span class="sd">            raccord_anglebrut_ouverture (float): Angle de rotation de la came où a lieu le raccord avec la phase de décélération à la limite de l&#39;affolement, pour l&#39;ouverture.</span>
+<span class="sd">            raccord_anglebrut_fermeture (float): Angle de rotation de la came où a lieu le raccord avec la phase de décélération à la limite de l&#39;affolement, pour la fermeture.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LoisCame: Une instance de LoisCame correspondant au squelette renseigné.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         
         <span class="n">dac_leveemax_ouverture</span> <span class="o">=</span> <span class="n">levee_squelbrut_ouverture</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">levee_squelbrut_ouverture</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">dac_leveemax_fermeture</span> <span class="o">=</span> <span class="n">levee_squelbrut_fermeture</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">levee_squelbrut_fermeture</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
@@ -719,12 +834,82 @@
 <div class="viewcode-block" id="CalculLoisReelles">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReelles">[docs]</a>
 <span class="k">class</span> <span class="nc">CalculLoisReelles</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classe représentant le cas d&#39;usage &quot;Calcul des lois réelles pour le jeu indiqué&quot;.</span>
+
+<span class="sd">    Cette classe permet également le calcul de l&#39;ouverture de la lois.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        controller (ControllerInterface): Contrôleur de l&#39;application.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        laws (object): Les lois chargées dans le logiciel. Ces lois sont celles sur lesquelle on travaille.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__(angles: np.ndarray, jeu: float = 0.0) -&gt; tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:</span>
+<span class="sd">            Calcule les lois réelles pour un ensemble d&#39;angles donné et pour un jeu particulier.</span>
+<span class="sd">        calcul_angles_attaque(jeu: float = 0.0) -&gt; tuple[float, float]:</span>
+<span class="sd">            Calcule les angles d&#39;attaque pour l&#39;ouverture et la fermeture.</span>
+<span class="sd">        calcul_ouverture(jeu: float = 0.0) -&gt; float:</span>
+<span class="sd">            Calcule l&#39;ouverture pour un jeu donné.</span>
+<span class="sd">        levee_reelle(angles: np.ndarray, jeu: float) -&gt; np.ndarray:</span>
+<span class="sd">            Calcule la levée réelle pour le jeu renseigné et pour un ensemble d&#39;angles donnés.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span> <span class="p">:</span> <span class="n">ControllerInterface</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">laws</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">current_laws</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angles</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule les lois réelles pour un ensemble d&#39;angles et pour un jeu donnés.</span>
+
+<span class="sd">        Cette méthode calcule les lois réelles pour un ensemble d&#39;angles et pour un jeu donnés. Tout d&#39;abord, la fonction restreint le calcul aux angles se trouvant entre les angles d&#39;attaque. Ensuite les nouvelles lois sont calculées.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            angles (np.ndarray): Angles de rotation de la came pour lesquels on souhaite connaitre les lois réelles.</span>
+<span class="sd">            jeu (float, optional): Jeu choisi dans le système.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]: Angles se trouvant entre les angles d&#39;attaque, accélération pour ces angles, vitesse pour ces angles et levée réelle pour ces angles. </span>
+<span class="sd">            and the real lift values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">angles_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+
+        <span class="n">angles_attaque</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+        <span class="n">partieactive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">angles_attaque</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">angles_1d</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">angles_1d</span> <span class="o">&lt;</span> <span class="n">angles_attaque</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">angles_actif</span> <span class="o">=</span> <span class="n">angles_1d</span><span class="p">[</span><span class="n">partieactive</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">angles_actif</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">v</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">,</span> <span class="n">jeu</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="CalculLoisReelles.calcul_ouverture">
+<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReelles.calcul_ouverture">[docs]</a>
+    <span class="k">def</span> <span class="nf">calcul_ouverture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;ouverture de la loi de levée en fonction du jeu.</span>
+
+<span class="sd">        Cette ouverture est définie comme la durée angulaire pendant laquelle la loi de levée théorique à jeu nul est supérieure au jeu. Pour calculer cette durée, les angles pour lesquels la levée à jeu nul est égale au jeu sont calculés. On obtient alors deux angles. Ces deux angles sont ensuite soustraits pour obtenir l&#39;ouverture.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            jeu (float, optional): Jeu théorique dans le système.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: L&#39;ouverture pour le jeu indiqué.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">angle_attaque_ouverture</span><span class="p">,</span> <span class="n">angle_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">angle_attaque_fermeture</span> <span class="o">-</span> <span class="n">angle_attaque_ouverture</span></div>
+
     
 <div class="viewcode-block" id="CalculLoisReelles.calcul_angles_attaque">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReelles.calcul_angles_attaque">[docs]</a>
-    <span class="k">def</span> <span class="nf">calcul_angles_attaque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calcul_angles_attaque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule les angles d&#39;attaque à l&#39;ouverture et à la fermeture.</span>
+
+<span class="sd">        Ces angles sont définis tels que la loi théorique à jeu nul soit égale au jeu pour ces angles.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            jeu (float, optional): Jeu choisi pour le système.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[float, float]: Angle d&#39;attaque à l&#39;ouverture et angle d&#39;attaque (ou de fuite plutôt) à la fermeture.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">angle_rampe_ouverture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">ac_fin_rampe</span>
         <span class="n">levee_rampe_ouverture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">lois_accel</span><span class="o">.</span><span class="n">levee_rampe</span>
         <span class="n">vitesse_rampe_ouverture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">lois_accel</span><span class="o">.</span><span class="n">vitesse_rampe</span>
@@ -739,168 +924,113 @@
         <span class="k">return</span> <span class="n">angle_attaque_ouverture</span><span class="p">,</span> <span class="n">angle_attaque_fermeture</span></div>
 
     
-<div class="viewcode-block" id="CalculLoisReelles.calcul_ouverture">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReelles.calcul_ouverture">[docs]</a>
-    <span class="k">def</span> <span class="nf">calcul_ouverture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-        <span class="n">angle_attaque_ouverture</span><span class="p">,</span> <span class="n">angle_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">angle_attaque_fermeture</span> <span class="o">-</span> <span class="n">angle_attaque_ouverture</span></div>
-
-
 <div class="viewcode-block" id="CalculLoisReelles.levee_reelle">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReelles.levee_reelle">[docs]</a>
-    <span class="k">def</span> <span class="nf">levee_reelle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">jeu</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">levee_reelle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angles</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jeu</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule la levée réelle avec prise en considération du jeu.</span>
+
+<span class="sd">        Cette méthode soustrait le jeu à la levée réelle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            angles (array-like): Les angles pour lesquels la loi réelle est évaluée.</span>
+<span class="sd">            jeu (float): Le jeu théorique dans le système. Attention le jeu ne doit pas être supérieur à la levée en fin de rampe.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            array-like: La levée réelle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span> <span class="o">-</span> <span class="n">jeu</span></div>
+</div>
 
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angles</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-    
-        <span class="n">angles_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
-
-        <span class="n">angles_attaque</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-        <span class="n">partieactive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">angles_attaque</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">angles_1d</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">angles_1d</span> <span class="o">&lt;</span> <span class="n">angles_attaque</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-
-        <span class="n">angles_actif</span> <span class="o">=</span> <span class="n">angles_1d</span><span class="p">[</span><span class="n">partieactive</span><span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">angles_actif</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">v</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">,</span> <span class="n">jeu</span><span class="p">)</span></div>
-
-    
 <div class="viewcode-block" id="CalculEfficacite">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculEfficacite">[docs]</a>
 <span class="k">class</span> <span class="nc">CalculEfficacite</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classe représentant le cas d&#39;usage &quot;Calcul de l&#39;efficacité de la loi&quot;.</span>
+
+<span class="sd">    Cette classe implémente des méthodes pour le calcul de l&#39;efficacité de la loi réelle.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        controller (ControllerInterface): Contrôleur de l&#39;application.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        laws (object): Lois chargées par le contrôleur.</span>
+<span class="sd">        calcloisrelles (CalculLoisReelles): Instance de l&#39;utilitaire de calcul des lois réelles, CalculLoisRelles.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        __call__(jeu: float = 0.0) -&gt; float:</span>
+<span class="sd">            Calcule l&#39;efficacité de la loi réelle.</span>
+<span class="sd">        calcul_aire_reelle(jeu: float) -&gt; float:</span>
+<span class="sd">            Calcule l&#39;aire sous la courbe de la loi réelle.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span> <span class="p">:</span> <span class="n">ControllerInterface</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">laws</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">current_laws</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span> <span class="o">=</span> <span class="n">CalculLoisReelles</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;efficacité de la loi pour le jeu renseigné.</span>
+
+<span class="sd">        Cette fonction calcule l&#39;efficacité, c&#39;est à dire le rapport entre l&#39;aire de la loi réelle et l&#39;aire de la loi idéale.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            jeu (float, optional): Jeu théorique choisi pour le système.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Efficacité de la loi.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
+        
+        <span class="n">aire_ideale</span> <span class="o">=</span> <span class="p">(</span><span class="n">ac_attaque_fermeture</span> <span class="o">-</span> <span class="n">ac_attaque_ouverture</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">squelette_levee</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">jeu</span><span class="p">)</span>
+
+        <span class="n">aire_reelle</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">scitg</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">,</span> <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">jeu</span><span class="p">,))</span>
+        
+        <span class="k">return</span> <span class="n">aire_reelle</span> <span class="o">/</span><span class="n">aire_ideale</span>
+    
 <div class="viewcode-block" id="CalculEfficacite.calcul_aire_reelle">
 <a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculEfficacite.calcul_aire_reelle">[docs]</a>
-    <span class="k">def</span> <span class="nf">calcul_aire_reelle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calcul_aire_reelle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calcule l&#39;aire de la loi de levée réelle, avec prise en compte du jeu.</span>
+
+<span class="sd">        Cette méthode tire profit du module integrate de scipy et plus particulière de la fonction quad qui permet d&#39;intégrer une fonction entre deux bornes. Ici les bornes sont l&#39;angle d&#39;attaque à l&#39;ouverture et l&#39;angle d&#39;attaque à la fermeture.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            jeu (float): Jeu choisi pour le système.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Aire sous la courbe de levée de la loi réelle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">scitg</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">,</span> <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">jeu</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span></div>
+</div>
 
     
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-
-        <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-        
-        <span class="n">aire_ideale</span> <span class="o">=</span> <span class="p">(</span><span class="n">ac_attaque_fermeture</span> <span class="o">-</span> <span class="n">ac_attaque_ouverture</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">squelette_levee</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">jeu</span><span class="p">)</span>
-
-        <span class="n">aire_reelle</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">scitg</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">,</span> <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">jeu</span><span class="p">,))</span>
-        
-        <span class="k">return</span> <span class="n">aire_reelle</span> <span class="o">/</span><span class="n">aire_ideale</span></div>
-
-
-<div class="viewcode-block" id="CalculLoisReellesV2">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReellesV2">[docs]</a>
-<span class="k">class</span> <span class="nc">CalculLoisReellesV2</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lois</span> <span class="p">:</span> <span class="n">LoisCame</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">laws</span> <span class="o">=</span> <span class="n">lois</span>
-    
-<div class="viewcode-block" id="CalculLoisReellesV2.calcul_angles_attaque">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReellesV2.calcul_angles_attaque">[docs]</a>
-    <span class="k">def</span> <span class="nf">calcul_angles_attaque</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-        <span class="n">angle_rampe_ouverture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">ac_fin_rampe</span>
-        <span class="n">levee_rampe_ouverture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">lois_accel</span><span class="o">.</span><span class="n">levee_rampe</span>
-        <span class="n">vitesse_rampe_ouverture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">lois_accel</span><span class="o">.</span><span class="n">vitesse_rampe</span>
-
-        <span class="n">angle_rampe_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">dac_leveemax_ouverture</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">dac_leveemax_ouverture</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_fermeture</span><span class="o">.</span><span class="n">ac_fin_rampe</span>
-        <span class="n">levee_rampe_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_fermeture</span><span class="o">.</span><span class="n">lois_accel</span><span class="o">.</span><span class="n">levee_rampe</span>
-        <span class="n">vitesse_rampe_fermeture</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_fermeture</span><span class="o">.</span><span class="n">lois_accel</span><span class="o">.</span><span class="n">vitesse_rampe</span>
-
-        <span class="n">angle_attaque_ouverture</span> <span class="o">=</span> <span class="p">(</span><span class="n">jeu</span> <span class="o">-</span> <span class="n">levee_rampe_ouverture</span><span class="p">)</span> <span class="o">/</span> <span class="n">vitesse_rampe_ouverture</span> <span class="o">+</span> <span class="n">angle_rampe_ouverture</span>
-        <span class="n">angle_attaque_fermeture</span> <span class="o">=</span> <span class="p">(</span><span class="n">jeu</span> <span class="o">-</span> <span class="n">levee_rampe_fermeture</span><span class="p">)</span> <span class="o">/</span> <span class="n">vitesse_rampe_fermeture</span> <span class="o">+</span> <span class="n">angle_rampe_fermeture</span>
-
-        <span class="k">return</span> <span class="n">angle_attaque_ouverture</span><span class="p">,</span> <span class="n">angle_attaque_fermeture</span></div>
-
-
-<div class="viewcode-block" id="CalculLoisReellesV2.calcul_ouverture">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReellesV2.calcul_ouverture">[docs]</a>
-    <span class="k">def</span> <span class="nf">calcul_ouverture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-        <span class="n">angle_attaque_ouverture</span><span class="p">,</span> <span class="n">angle_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">angle_attaque_fermeture</span> <span class="o">-</span> <span class="n">angle_attaque_ouverture</span></div>
-
-
-<div class="viewcode-block" id="CalculLoisReellesV2.levee_reelle">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculLoisReellesV2.levee_reelle">[docs]</a>
-    <span class="k">def</span> <span class="nf">levee_reelle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">jeu</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span> <span class="o">-</span> <span class="n">jeu</span></div>
-
-
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angles</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-    
-        <span class="n">angles_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
-
-        <span class="n">angles_attaque</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-        <span class="n">partieactive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">angles_attaque</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">angles_1d</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">angles_1d</span> <span class="o">&lt;</span> <span class="n">angles_attaque</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-
-        <span class="n">angles_actif</span> <span class="o">=</span> <span class="n">angles_1d</span><span class="p">[</span><span class="n">partieactive</span><span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">angles_actif</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">v</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">(</span><span class="n">angles_actif</span><span class="p">,</span> <span class="n">jeu</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="CalculEfficaciteV2">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculEfficaciteV2">[docs]</a>
-<span class="k">class</span> <span class="nc">CalculEfficaciteV2</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lois</span> <span class="p">:</span> <span class="n">LoisCame</span><span class="p">,</span> <span class="n">calculloisrelle</span> <span class="p">:</span> <span class="n">CalculLoisReellesV2</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">laws</span> <span class="o">=</span> <span class="n">lois</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span> <span class="o">=</span> <span class="n">calculloisrelle</span>
-
-<div class="viewcode-block" id="CalculEfficaciteV2.calcul_aire_reelle">
-<a class="viewcode-back" href="../../../../softcam.application.usecases.html#softcam.application.usecases.loiscame.CalculEfficaciteV2.calcul_aire_reelle">[docs]</a>
-    <span class="k">def</span> <span class="nf">calcul_aire_reelle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span><span class="p">):</span>
-        <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">scitg</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">,</span> <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">jeu</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span></div>
-
-    
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jeu</span> <span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-
-        <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">calcul_angles_attaque</span><span class="p">(</span><span class="n">jeu</span><span class="p">)</span>
-        
-        <span class="n">aire_ideale</span> <span class="o">=</span> <span class="p">(</span><span class="n">ac_attaque_fermeture</span> <span class="o">-</span> <span class="n">ac_attaque_ouverture</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">laws</span><span class="o">.</span><span class="n">demilois_ouverture</span><span class="o">.</span><span class="n">squelette_levee</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">jeu</span><span class="p">)</span>
-
-        <span class="n">aire_reelle</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">scitg</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calcloisrelles</span><span class="o">.</span><span class="n">levee_reelle</span><span class="p">,</span> <span class="n">ac_attaque_ouverture</span><span class="p">,</span> <span class="n">ac_attaque_fermeture</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">jeu</span><span class="p">,))</span>
-        
-        <span class="k">return</span> <span class="n">aire_reelle</span> <span class="o">/</span><span class="n">aire_ideale</span></div>
-
 </pre></div>
-        </article>
-      </div>
-      <footer>
-        
-        <div class="related-pages">
-          
-          
-        </div>
-        <div class="bottom-of-page">
-          <div class="left-details">
-            <div class="copyright">
-                Copyright &#169; 2024, Jérémy Lemaitre
-            </div>
-            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-            
-            <a href="https://github.com/pradyunsg/furo">Furo</a>
-            
+
+           </div>
           </div>
-          <div class="right-details">
-            
-          </div>
-        </div>
-        
-      </footer>
-    </div>
-    <aside class="toc-drawer no-toc">
-      
-      
-      
-    </aside>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Jérémy Lemaitre.</p>
   </div>
-</div><script src="../../../../_static/documentation_options.js?v=e8570148"></script>
-    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../../../_static/scripts/furo.js?v=5fa4622c"></script>
-    <script src="../../../../_static/translations.js?v=041d0952"></script>
-    </body>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

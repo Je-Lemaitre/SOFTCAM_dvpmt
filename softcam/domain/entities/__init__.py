@@ -1,0 +1,1 @@
+"""Le package "entities" regroupe les représentation informatique d'objets physiques (came, soupape, levier, ..., critères de dimensionnement mécaniques, ...) et d'objets mathématiques (loi de levée, demi-loi, ...)"""

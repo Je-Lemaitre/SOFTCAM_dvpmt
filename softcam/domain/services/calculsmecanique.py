@@ -226,11 +226,11 @@ class CalculEffortsLevier(CalculEfforts):
         """
         frottement_patinsoupape = self.force_frottement(ac, regime_moteur, contact="Soupape/Patin")
         z12 = self.z12(ac, regime_moteur)
-        li = self.calccinematique.li(ac) 
+        li_s = self.calccinematique.li_s(ac) 
         m_l_12 = np.dot(
             np.cross(
                 -np.einsum("i,j -> ij", frottement_patinsoupape, self.calccinematique.y1) + np.einsum("i,j -> ij", z12, self.calccinematique.z1), 
-                li ), 
+                li_s ), 
             self.calccinematique.x
             )
 

@@ -1,0 +1,2 @@
+"""Le package "repositories" contient le code permettant la gestion du stockage des données. Le stockage utilisé actuellement est au format .json. Mais il est possible d'envisager le stockage dans un fichier Excel ou dans une base de données relationnelle.
+"""

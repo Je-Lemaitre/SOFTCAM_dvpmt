@@ -1,0 +1,2 @@
+"""Le package "interfaces" contient des classes abstraites. Chacune de ces classes abstraites correspond à une ou plusieurs classes concrètes dans le package "infrastructure". Ces classes permettent de mettre en oeuvre le principe informatique d'inversion des dépendances. L'interface permet en fait de contrôler que le format des données émises depuis l'interface utilisateur correspond au format de données utilisé par les cas d'usage.
+"""

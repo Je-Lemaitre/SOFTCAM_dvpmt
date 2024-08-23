@@ -1,0 +1,2 @@
+"""Le package "ui" contient le conde permettant au logiciel de générer l'interface graphique d'un point de vue visuel. À chaque fichier python est associer un fichier .ui qui est généré par Qt Designer. Qt Designer est un logiciel qui aide à la création des fenêtre graphique. Le code python est généré automatique à partir des fichiers .ui.
+"""

@@ -1,0 +1,1 @@
+"""Le package "views" contient le code permetant de définir les interactions entre l'utilisateur et l'interface graphique. C'est-à-dire ce qu'il se passe quand l'utilisateur cliue sur tel bouton ou écrit tel donnée."""
